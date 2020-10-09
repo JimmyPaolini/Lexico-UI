@@ -1,9 +1,9 @@
 import React from 'react';
 import NounCard from './NounCard';
 import {muiTheme} from 'storybook-addon-material-ui';
-import theme from '../theme';
-import domus from "../test/domus.json"
-import furcifer from "../test/furcifer.json"
+import theme from '../../theme';
+import domus from "../../test/domus.json"
+import furcifer from "../../test/furcifer.json"
 
 export default {
     title: 'NounCard',

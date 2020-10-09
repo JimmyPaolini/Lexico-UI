@@ -1,7 +1,7 @@
 import React from 'react';
 import FormTabs from './FormTabs';
 import {muiTheme} from 'storybook-addon-material-ui';
-import theme from '../theme';
+import theme from '../../theme';
 
 export default {
     title: 'FormTabs',

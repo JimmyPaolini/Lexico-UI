@@ -7,51 +7,57 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from '@material-ui/core/IconButton';
-import BookmarkIcon from '@material-ui/icons/Bookmark';
-import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import VerbCard from "./VerbCard";
+import NounCard from "./NounCard";
+import AdjectiveCard from "./AdjectiveCard";
 import PropTypes from "prop-types";
 
-export default function PrincipalPartsRow({principalParts}) {
-    const classes = useStyles();
-    const principalPartsRestructured = principalParts.map(pp => pp.split(": ")[1].replace(" or ", "/")).join(", ");
+const posMap = {
+    "verb": VerbCard,
+    "noun": NounCard,
+    "proper noun": NounCard,
+    "adjective": AdjectiveCard,
+    "participle": AdjectiveCard,
+    "adverb": AdjectiveCard,
+}
 
-    if (!window.localStorage.bookmarks) window.localStorage.bookmarks = "";
-    const [bookmarked, setBookmarked] = useState(window.localStorage.bookmarks.match(new RegExp(principalPartsRestructured)));
-    const toggleBookmark = () => {
-        if (bookmarked) window.localStorage.bookmarks = window.localStorage.bookmarks.replace(`{${principalPartsRestructured}} `, '');
-        else window.localStorage.bookmarks += `{${principalPartsRestructured}} `;
-        setBookmarked(!bookmarked);
-    }
+export default function FormsRow({nonlemmaForms, forms, partOfSpeech}) {
+    const classes = useStyles();
+    const [expanded, setExpanded] = useState(false);
+    const toggleExpanded = () => setExpanded(!expanded);
+
+    const FormsCard = posMap[partOfSpeech];
     return (
         <Paper className={classes.paper} elevation={0}>
             <List dense className={classes.translationsList}>
                 <ListItem>
                     <ListItemText
-                        primary={principalPartsRestructured}
-                        primaryTypographyProps={{variant: "subtitle1"}}
+                        secondary={nonlemmaForms}
+                        // secondaryTypographyProps={{variant: "subtitle1"}}
                     />
                     <ListItemSecondaryAction>
-                        <IconButton edge="end" aria-label="comments" onClick={toggleBookmark}>
-                            {bookmarked ? <BookmarkIcon/> : <BookmarkBorderIcon/>}
+                        <IconButton edge="end" aria-label="comments" onClick={toggleExpanded}>
+                            {expanded ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}
                         </IconButton>
                     </ListItemSecondaryAction>
                 </ListItem>
             </List>
             <Divider variant="inset"/>
+            {expanded && <FormsCard forms={forms}/>}
         </Paper>
     )
 }
 
-PrincipalPartsRow.propTypes = {
+FormsRow.propTypes = {
     principalParts: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     searchResults: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     bookmarked: PropTypes.bool.isRequired,
 };
 
-const width = 382;
 const useStyles = makeStyles(theme => ({
     paper: {
-        width: `${width}px`,
         borderRadius: 0,
     },
     translationsList: {

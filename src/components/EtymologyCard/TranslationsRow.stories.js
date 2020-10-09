@@ -1,9 +1,9 @@
 import React from 'react';
 import TranslationsRow from './TranslationsRow';
 import {muiTheme} from 'storybook-addon-material-ui';
-import theme from '../theme';
-import amoenus from "../test/amoenus.json"
-import fero from "../test/fero.json"
+import theme from '../../theme';
+import amoenus from "../../test/amoenus.json"
+import fero from "../../test/fero.json"
 
 export default {
     title: 'TranslationsRow',

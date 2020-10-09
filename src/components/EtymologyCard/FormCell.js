@@ -97,10 +97,10 @@ const useStyles = makeStyles(theme => ({
     },
     leftDivider: {
         position: "absolute",
-        left: "0px",
+        left: 0,
     },
     rightDivider: {
         position: "absolute",
-        right: "0px",
+        right: 0,
     },
 }));

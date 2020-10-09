@@ -1,8 +1,8 @@
 import React from 'react';
 import AdjectiveCard from './AdjectiveCard';
 import {muiTheme} from 'storybook-addon-material-ui';
-import theme from '../theme';
-import amoenus from "../test/amoenus.json"
+import theme from '../../theme';
+import amoenus from "../../test/amoenus.json"
 
 export default {
     title: 'AdjectiveCard',

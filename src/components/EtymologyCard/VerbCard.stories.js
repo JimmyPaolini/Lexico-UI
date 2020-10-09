@@ -1,9 +1,9 @@
 import React from 'react';
 import VerbCard from './VerbCard';
 import {muiTheme} from 'storybook-addon-material-ui';
-import theme from '../theme';
-import amo from "../test/amo.json"
-import fero from "../test/fero.json"
+import theme from '../../theme';
+import amo from "../../test/amo.json"
+import fero from "../../test/fero.json"
 
 export default {
     title: 'VerbCard',

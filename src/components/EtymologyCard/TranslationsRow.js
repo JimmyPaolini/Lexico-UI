@@ -22,13 +22,15 @@ export default function TranslationsRow({translations}) {
     }
     return (
         <Paper className={classes.paper} elevation={0}>
-            <List dense className={classes.translationsList}>
+            <List dense className={classes.translationsList} style={{width: expanderNecessary ? "80%" :  "100%"}}>
                 {translations.map((translation, i) => (
-                    <ListItem id={i}>
-                        <ListItemIcon>
-                            <FiberManualRecordIcon fontSize="small"/>
-                        </ListItemIcon>
-                        <ListItemText primary={translation} primaryTypographyProps={{variant: "subtitle1"}}/>
+                    <ListItem id={i} className={classes.listItem}>
+                        <ListItemIcon><FiberManualRecordIcon fontSize="small"/></ListItemIcon>
+                        <ListItemText
+                            primary={translation}
+                            primaryTypographyProps={{variant: "body1"}}
+                            className={classes.listItemText}
+                        />
                     </ListItem>
                 ))}
                 {expanderNecessary && !expanded && (
@@ -40,7 +42,7 @@ export default function TranslationsRow({translations}) {
             </List>
             {expanderNecessary &&
                 <Box className={classes.expandButton}>
-                    <IconButton aria-label="expand" onClick={toggleExpansion} >
+                    <IconButton aria-label="expand" onClick={toggleExpansion}>
                         {expanded ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}
                     </IconButton>
                 </Box>
@@ -58,7 +60,6 @@ const useStyles = makeStyles(theme => ({
     },
     translationsList: {
         display: "inline-block",
-        width: "80%",
     },
     expandButton: {
         display: "inline-block",
@@ -66,5 +67,13 @@ const useStyles = makeStyles(theme => ({
         float: "right",
         top: "4px",
         right: "4px"
+    },
+    listItem: {
+        paddingTop: 0,
+        paddingBottom: 0,
+    },
+    listItemText: {
+        position: "relative",
+        right: 20
     }
 }));

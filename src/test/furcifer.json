@@ -1,0 +1,85 @@
+{
+  "word": "furcifer",
+  "href": "https://en.wiktionary.org/wiki/furcifer#Latin",
+  "etymologies": [
+    {
+      "partOfSpeech": "noun",
+      "translations": [
+        "Yoke-bearer (a term of abuse, usually of slaves)",
+        "Rascal, scoundrel, rogue"
+      ],
+      "principalParts": [
+        "nominative: furcifer",
+        "genitive: furciferī"
+      ],
+      "inflection": "second (nominative singular in -er), masculine",
+      "forms": {
+        "nominative": {
+          "singular": [
+            "furcifer"
+          ],
+          "plural": [
+            "furciferī"
+          ]
+        },
+        "genitive": {
+          "singular": [
+            "furciferī"
+          ],
+          "plural": [
+            "furciferōrum"
+          ]
+        },
+        "dative": {
+          "singular": [
+            "furciferō"
+          ],
+          "plural": [
+            "furciferīs"
+          ]
+        },
+        "accusative": {
+          "singular": [
+            "furciferum"
+          ],
+          "plural": [
+            "furciferōs"
+          ]
+        },
+        "ablative": {
+          "singular": [
+            "furciferō"
+          ],
+          "plural": [
+            "furciferīs"
+          ]
+        },
+        "vocative": {
+          "singular": [
+            "furcifer"
+          ],
+          "plural": [
+            "furciferī"
+          ]
+        }
+      },
+      "pronunciation": {
+        "classical": {
+          "phonemes": "F U R K I F E R",
+          "phonemic": "/ˈfur.ki.fer/",
+          "phonetic": "[ˈfʊr.kɪ.fɛr]"
+        },
+        "ecclesiastical": {
+          "phonemes": "f u: r ch i: f e: r",
+          "phonemic": "/ˈfur.t͡ʃi.fer/",
+          "phonetic": "[ˈfur.t͡ʃi.fɛr]"
+        },
+        "vulgar": {
+          "phonemes": []
+        }
+      },
+      "etymology": "From furca +‎ -fer.",
+      "root": true
+    }
+  ]
+}

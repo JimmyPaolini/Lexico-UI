@@ -1,0 +1,715 @@
+{
+  "word": "fero",
+  "href": "https://en.wiktionary.org/wiki/fero#Latin",
+  "etymologies": [
+    {
+      "partOfSpeech": "verb",
+      "translations": [
+        "I bear, carry",
+        "I support, hold up",
+        "I endure",
+        "I report",
+        "I cast (a vote); I pass or ratify (a law)",
+        "I propose",
+        "I win",
+        "I create",
+        "I bring forth; I put in motion; I move forward",
+        "I lead"
+      ],
+      "etymology": "(intransitive)\nA suppletive paradigm consisting of two different roots.",
+      "principalParts": [
+        "present active: ferō",
+        "present infinitive: ferre",
+        "perfect active: tulī or tetulī",
+        "supine: lātum"
+      ],
+      "inflection": "third, irregular",
+      "forms": {
+        "indicative": {
+          "active": {
+            "present": {
+              "singular": {
+                "first": [
+                  "ferō"
+                ],
+                "second": [
+                  "fers"
+                ],
+                "third": [
+                  "fert"
+                ]
+              },
+              "plural": {
+                "first": [
+                  "ferimus"
+                ],
+                "second": [
+                  "fertis"
+                ],
+                "third": [
+                  "ferunt"
+                ]
+              }
+            },
+            "imperfect": {
+              "singular": {
+                "first": [
+                  "ferēbam"
+                ],
+                "second": [
+                  "ferēbās"
+                ],
+                "third": [
+                  "ferēbat"
+                ]
+              },
+              "plural": {
+                "first": [
+                  "ferēbāmus"
+                ],
+                "second": [
+                  "ferēbātis"
+                ],
+                "third": [
+                  "ferēbant"
+                ]
+              }
+            },
+            "future": {
+              "singular": {
+                "first": [
+                  "feram"
+                ],
+                "second": [
+                  "ferēs"
+                ],
+                "third": [
+                  "feret"
+                ]
+              },
+              "plural": {
+                "first": [
+                  "ferēmus"
+                ],
+                "second": [
+                  "ferētis"
+                ],
+                "third": [
+                  "ferent"
+                ]
+              }
+            },
+            "perfect": {
+              "singular": {
+                "first": [
+                  "tulī",
+                  "tetulī"
+                ],
+                "second": [
+                  "tulistī",
+                  "tetulistī"
+                ],
+                "third": [
+                  "tulit",
+                  "tetulit"
+                ]
+              },
+              "plural": {
+                "first": [
+                  "tulimus",
+                  "tetulimus"
+                ],
+                "second": [
+                  "tulistis",
+                  "tetulistis"
+                ],
+                "third": [
+                  "tulērunt",
+                  "tulēre",
+                  "tetulērunt",
+                  "tetulēre"
+                ]
+              }
+            },
+            "pluperfect": {
+              "singular": {
+                "first": [
+                  "tuleram",
+                  "tetuleram"
+                ],
+                "second": [
+                  "tulerās",
+                  "tetulerās"
+                ],
+                "third": [
+                  "tulerat",
+                  "tetulerat"
+                ]
+              },
+              "plural": {
+                "first": [
+                  "tulerāmus",
+                  "tetulerāmus"
+                ],
+                "second": [
+                  "tulerātis",
+                  "tetulerātis"
+                ],
+                "third": [
+                  "tulerant",
+                  "tetulerant"
+                ]
+              }
+            },
+            "future perfect": {
+              "singular": {
+                "first": [
+                  "tulerō",
+                  "tetulerō"
+                ],
+                "second": [
+                  "tuleris",
+                  "tetuleris"
+                ],
+                "third": [
+                  "tulerit",
+                  "tetulerit"
+                ]
+              },
+              "plural": {
+                "first": [
+                  "tulerimus",
+                  "tetulerimus"
+                ],
+                "second": [
+                  "tuleritis",
+                  "tetuleritis"
+                ],
+                "third": [
+                  "tulerint",
+                  "tetulerint"
+                ]
+              }
+            }
+          },
+          "passive": {
+            "present": {
+              "singular": {
+                "first": [
+                  "feror"
+                ],
+                "second": [
+                  "ferris",
+                  "ferre"
+                ],
+                "third": [
+                  "fertur"
+                ]
+              },
+              "plural": {
+                "first": [
+                  "ferimur"
+                ],
+                "second": [
+                  "feriminī"
+                ],
+                "third": [
+                  "feruntur"
+                ]
+              }
+            },
+            "imperfect": {
+              "singular": {
+                "first": [
+                  "ferēbar"
+                ],
+                "second": [
+                  "ferēbāris",
+                  "ferēbāre"
+                ],
+                "third": [
+                  "ferēbātur"
+                ]
+              },
+              "plural": {
+                "first": [
+                  "ferēbāmur"
+                ],
+                "second": [
+                  "ferēbāminī"
+                ],
+                "third": [
+                  "ferēbantur"
+                ]
+              }
+            },
+            "future": {
+              "singular": {
+                "first": [
+                  "ferar"
+                ],
+                "second": [
+                  "ferēris",
+                  "ferēre"
+                ],
+                "third": [
+                  "ferētur"
+                ]
+              },
+              "plural": {
+                "first": [
+                  "ferēmur"
+                ],
+                "second": [
+                  "ferēminī"
+                ],
+                "third": [
+                  "ferentur"
+                ]
+              }
+            },
+            "perfect": {
+              "singular": {
+                "first": [
+                  "lātus sum"
+                ],
+                "second": [
+                  "lātus es"
+                ],
+                "third": [
+                  "lātus est"
+                ]
+              },
+              "plural": {
+                "first": [
+                  "lātus sumus"
+                ],
+                "second": [
+                  "lātus estis"
+                ],
+                "third": [
+                  "lātus sunt"
+                ]
+              }
+            },
+            "pluperfect": {
+              "singular": {
+                "first": [
+                  "lātus eram"
+                ],
+                "second": [
+                  "lātus erās"
+                ],
+                "third": [
+                  "lātus erat"
+                ]
+              },
+              "plural": {
+                "first": [
+                  "lātus erāmus"
+                ],
+                "second": [
+                  "lātus erātis"
+                ],
+                "third": [
+                  "lātus erant"
+                ]
+              }
+            },
+            "future perfect": {
+              "singular": {
+                "first": [
+                  "lātus erō"
+                ],
+                "second": [
+                  "lātus eris"
+                ],
+                "third": [
+                  "lātus erit"
+                ]
+              },
+              "plural": {
+                "first": [
+                  "lātus erimus"
+                ],
+                "second": [
+                  "lātus eritis"
+                ],
+                "third": [
+                  "lātus erunt"
+                ]
+              }
+            }
+          }
+        },
+        "subjunctive": {
+          "active": {
+            "present": {
+              "singular": {
+                "first": [
+                  "feram"
+                ],
+                "second": [
+                  "ferās"
+                ],
+                "third": [
+                  "ferat"
+                ]
+              },
+              "plural": {
+                "first": [
+                  "ferāmus"
+                ],
+                "second": [
+                  "ferātis"
+                ],
+                "third": [
+                  "ferant"
+                ]
+              }
+            },
+            "imperfect": {
+              "singular": {
+                "first": [
+                  "ferrem"
+                ],
+                "second": [
+                  "ferrēs"
+                ],
+                "third": [
+                  "ferret"
+                ]
+              },
+              "plural": {
+                "first": [
+                  "ferrēmus"
+                ],
+                "second": [
+                  "ferrētis"
+                ],
+                "third": [
+                  "ferrent"
+                ]
+              }
+            },
+            "perfect": {
+              "singular": {
+                "first": [
+                  "tulerim",
+                  "tetulerim"
+                ],
+                "second": [
+                  "tulerīs",
+                  "tetulerīs"
+                ],
+                "third": [
+                  "tulerit",
+                  "tetulerit"
+                ]
+              },
+              "plural": {
+                "first": [
+                  "tulerīmus",
+                  "tetulerīmus"
+                ],
+                "second": [
+                  "tulerītis",
+                  "tetulerītis"
+                ],
+                "third": [
+                  "tulerint",
+                  "tetulerint"
+                ]
+              }
+            },
+            "pluperfect": {
+              "singular": {
+                "first": [
+                  "tulissem",
+                  "tetulissem"
+                ],
+                "second": [
+                  "tulissēs",
+                  "tetulissēs"
+                ],
+                "third": [
+                  "tulisset",
+                  "tetulisset"
+                ]
+              },
+              "plural": {
+                "first": [
+                  "tulissēmus",
+                  "tetulissēmus"
+                ],
+                "second": [
+                  "tulissētis",
+                  "tetulissētis"
+                ],
+                "third": [
+                  "tulissent",
+                  "tetulissent"
+                ]
+              }
+            }
+          },
+          "passive": {
+            "present": {
+              "singular": {
+                "first": [
+                  "ferar"
+                ],
+                "second": [
+                  "ferāris",
+                  "ferāre"
+                ],
+                "third": [
+                  "ferātur"
+                ]
+              },
+              "plural": {
+                "first": [
+                  "ferāmur"
+                ],
+                "second": [
+                  "ferāminī"
+                ],
+                "third": [
+                  "ferantur"
+                ]
+              }
+            },
+            "imperfect": {
+              "singular": {
+                "first": [
+                  "ferrer"
+                ],
+                "second": [
+                  "ferrēris",
+                  "ferrēre"
+                ],
+                "third": [
+                  "ferrētur"
+                ]
+              },
+              "plural": {
+                "first": [
+                  "ferrēmur"
+                ],
+                "second": [
+                  "ferrēminī"
+                ],
+                "third": [
+                  "ferrentur"
+                ]
+              }
+            },
+            "perfect": {
+              "singular": {
+                "first": [
+                  "lātus sim"
+                ],
+                "second": [
+                  "lātus sīs"
+                ],
+                "third": [
+                  "lātus sit"
+                ]
+              },
+              "plural": {
+                "first": [
+                  "lātus sīmus"
+                ],
+                "second": [
+                  "lātus sītis"
+                ],
+                "third": [
+                  "lātus sint"
+                ]
+              }
+            },
+            "pluperfect": {
+              "singular": {
+                "first": [
+                  "lātus essem",
+                  "lātus forem"
+                ],
+                "second": [
+                  "lātus essēs",
+                  "lātus forēs"
+                ],
+                "third": [
+                  "lātus esset",
+                  "lātus foret"
+                ]
+              },
+              "plural": {
+                "first": [
+                  "lātus essēmus",
+                  "lātus forēmus"
+                ],
+                "second": [
+                  "lātus essētis",
+                  "lātus forētis"
+                ],
+                "third": [
+                  "lātus essent",
+                  "lātus forent"
+                ]
+              }
+            }
+          }
+        },
+        "imperative": {
+          "active": {
+            "present": {
+              "singular": {
+                "second": [
+                  "fer"
+                ]
+              },
+              "plural": {
+                "second": [
+                  "ferte"
+                ]
+              }
+            },
+            "future": {
+              "singular": {
+                "second": [
+                  "fertō"
+                ],
+                "third": [
+                  "fertō"
+                ]
+              },
+              "plural": {
+                "second": [
+                  "fertōte"
+                ],
+                "third": [
+                  "feruntō"
+                ]
+              }
+            }
+          },
+          "passive": {
+            "present": {
+              "singular": {
+                "second": [
+                  "ferre"
+                ]
+              },
+              "plural": {
+                "second": [
+                  "feriminī"
+                ]
+              }
+            },
+            "future": {
+              "singular": {
+                "second": [
+                  "fertor"
+                ],
+                "third": [
+                  "fertor"
+                ]
+              },
+              "plural": {
+                "third": [
+                  "feruntor"
+                ]
+              }
+            }
+          }
+        },
+        "non-finite": {
+          "infinitive": {
+            "active": {
+              "present": [
+                "ferre"
+              ],
+              "perfect": [
+                "tulisse",
+                "tetulisse"
+              ],
+              "future": [
+                "lātūrum esse"
+              ]
+            },
+            "passive": {
+              "present": [
+                "ferrī"
+              ],
+              "perfect": [
+                "lātum esse"
+              ],
+              "future": [
+                "lātum īrī"
+              ]
+            }
+          },
+          "participle": {
+            "active": {
+              "present": [
+                "ferēns"
+              ],
+              "future": [
+                "lātūrus"
+              ]
+            },
+            "passive": {
+              "perfect": [
+                "lātus"
+              ],
+              "future": [
+                "ferendus",
+                "ferundus"
+              ]
+            }
+          }
+        },
+        "verbal-noun": {
+          "gerund": {
+            "genitive": [
+              "ferendī"
+            ],
+            "dative": [
+              "ferendō"
+            ],
+            "accusative": [
+              "ferendum"
+            ],
+            "ablative": [
+              "ferendō"
+            ]
+          },
+          "supine": {
+            "accusative": [
+              "lātum"
+            ],
+            "ablative": [
+              "lātū"
+            ]
+          }
+        }
+      },
+      "pronunciation": {
+        "classical": {
+          "phonemes": "F E R OO",
+          "phonemic": "/ˈfe.roː/",
+          "phonetic": "[ˈfɛ.roː]"
+        },
+        "ecclesiastical": {
+          "phonemes": "f e: r o:",
+          "phonemic": "/ˈfe.ro/",
+          "phonetic": "[ˈfɛː.rɔ]"
+        },
+        "vulgar": {
+          "phonemes": []
+        }
+      },
+      "root": true
+    }
+  ]
+}

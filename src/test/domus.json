@@ -1,0 +1,101 @@
+{
+  "word": "domus",
+  "href": "https://en.wiktionary.org/wiki/domus#Latin",
+  "etymologies": [
+    {
+      "partOfSpeech": "noun",
+      "translations": [
+        "House, home",
+        "Any building or abode",
+        "Native place, one's country or home (confer patria)",
+        "Household, family, race"
+      ],
+      "etymology": "(poetic)\nFrom Proto-Italic *domos, from Proto-Indo-European *dṓm (“house, home”), from root *dem- (“to build”). Cognates include Ancient Greek δόμος (dómos), Albanian dhomë (“a chamber, a room”), Avestan 𐬨𐬀𐬛‎ (dam-) Sanskrit दम (dáma) and Proto-Slavic *domъ. The same Proto-Indo-European root also gave Old English timber (“building, act of building”); see modern English timber.",
+      "principalParts": [
+        "nominative: domus",
+        "genitive: domūs or domī"
+      ],
+      "inflection": "fourth/second , with locative, feminine",
+      "forms": {
+        "nominative": {
+          "singular": [
+            "domus"
+          ],
+          "plural": [
+            "domūs"
+          ]
+        },
+        "genitive": {
+          "singular": [
+            "domūs",
+            "domī"
+          ],
+          "plural": [
+            "domuum",
+            "domōrum"
+          ]
+        },
+        "dative": {
+          "singular": [
+            "domuī",
+            "domō",
+            "domū"
+          ],
+          "plural": [
+            "domibus"
+          ]
+        },
+        "accusative": {
+          "singular": [
+            "domum"
+          ],
+          "plural": [
+            "domūs",
+            "domōs"
+          ]
+        },
+        "ablative": {
+          "singular": [
+            "domū",
+            "domō"
+          ],
+          "plural": [
+            "domibus"
+          ]
+        },
+        "vocative": {
+          "singular": [
+            "domus"
+          ],
+          "plural": [
+            "domūs"
+          ]
+        },
+        "locative": {
+          "singular": [
+            "domī"
+          ],
+          "plural": [
+            "domibus"
+          ]
+        }
+      },
+      "pronunciation": {
+        "classical": {
+          "phonemes": "D O M U S",
+          "phonemic": "/ˈdo.mus/",
+          "phonetic": "[ˈd̪ɔ.mʊs]"
+        },
+        "ecclesiastical": {
+          "phonemes": "d o: m u: s",
+          "phonemic": "/ˈdo.mus/",
+          "phonetic": "[ˈd̪ɔː.mus]"
+        },
+        "vulgar": {
+          "phonemes": []
+        }
+      },
+      "root": true
+    }
+  ]
+}

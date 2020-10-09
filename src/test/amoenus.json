@@ -1,0 +1,183 @@
+{
+  "word": "amoenus",
+  "href": "https://en.wiktionary.org/wiki/amoenus#Latin",
+  "etymologies": [
+    {
+      "partOfSpeech": "adjective",
+      "translations": [
+        "Charming, pleasant, agreeable",
+        "Lovely, delightful, beautiful"
+      ],
+      "principalParts": [
+        "masculine: amoenus",
+        "feminine: amoena",
+        "neuter: amoenum",
+        "adverb: amoenē or amoeniter"
+      ],
+      "inflection": "first/second",
+      "forms": {
+        "nominative": {
+          "singular": {
+            "masculine": [
+              "amoenus"
+            ],
+            "feminine": [
+              "amoena"
+            ],
+            "neuter": [
+              "amoenum"
+            ]
+          },
+          "plural": {
+            "masculine": [
+              "amoenī"
+            ],
+            "feminine": [
+              "amoenae"
+            ],
+            "neuter": [
+              "amoena"
+            ]
+          }
+        },
+        "genitive": {
+          "singular": {
+            "masculine": [
+              "amoenī"
+            ],
+            "feminine": [
+              "amoenae"
+            ],
+            "neuter": [
+              "amoenī"
+            ]
+          },
+          "plural": {
+            "masculine": [
+              "amoenōrum"
+            ],
+            "feminine": [
+              "amoenārum"
+            ],
+            "neuter": [
+              "amoenōrum"
+            ]
+          }
+        },
+        "dative": {
+          "singular": {
+            "masculine": [
+              "amoenō"
+            ],
+            "feminine": [
+              "amoenae"
+            ],
+            "neuter": [
+              "amoenō"
+            ]
+          },
+          "plural": {
+            "masculine": [
+              "amoenīs"
+            ],
+            "feminine": [
+              "amoenīs"
+            ],
+            "neuter": [
+              "amoenīs"
+            ]
+          }
+        },
+        "accusative": {
+          "singular": {
+            "masculine": [
+              "amoenum"
+            ],
+            "feminine": [
+              "amoenam"
+            ],
+            "neuter": [
+              "amoenum"
+            ]
+          },
+          "plural": {
+            "masculine": [
+              "amoenōs"
+            ],
+            "feminine": [
+              "amoenās"
+            ],
+            "neuter": [
+              "amoena"
+            ]
+          }
+        },
+        "ablative": {
+          "singular": {
+            "masculine": [
+              "amoenō"
+            ],
+            "feminine": [
+              "amoenā"
+            ],
+            "neuter": [
+              "amoenō"
+            ]
+          },
+          "plural": {
+            "masculine": [
+              "amoenīs"
+            ],
+            "feminine": [
+              "amoenīs"
+            ],
+            "neuter": [
+              "amoenīs"
+            ]
+          }
+        },
+        "vocative": {
+          "singular": {
+            "masculine": [
+              "amoene"
+            ],
+            "feminine": [
+              "amoena"
+            ],
+            "neuter": [
+              "amoenum"
+            ]
+          },
+          "plural": {
+            "masculine": [
+              "amoenī"
+            ],
+            "feminine": [
+              "amoenae"
+            ],
+            "neuter": [
+              "amoena"
+            ]
+          }
+        }
+      },
+      "pronunciation": {
+        "classical": {
+          "phonemes": "A M OE N U S",
+          "phonemic": "/aˈmoe̯.nus/",
+          "phonetic": "[aˈmoe̯.n̪ʊs]"
+        },
+        "ecclesiastical": {
+          "phonemes": "a: m e n u: s",
+          "phonemic": "/aˈme.nus/",
+          "phonetic": "[aˈmɛː.nus]"
+        },
+        "vulgar": {
+          "phonemes": []
+        }
+      },
+      "etymology": "The origin remains unexplained. Possibly from amo (“I love”), mino (“I drive forth”), or loaned from a substrate.",
+      "root": true
+    }
+  ]
+}

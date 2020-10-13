@@ -1,15 +1,29 @@
 {
     "configurations": [
         {
+            "name": "Launch via NPM",
+            "request": "launch",
+            "runtimeArgs": [
+                "run-script",
+                "debug"
+            ],
+            "runtimeExecutable": "lexico/test/searchManager.test.js",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "pwa-node"
+        },
+        {
             "type": "aws-sam",
             "request": "direct-invoke",
-            "name": "lexico:HelloWorldFunction (nodejs12.x)",
+            "name": "searchManager.manageSearch",
             "invokeTarget": {
-                "target": "template",
-                "templatePath": "lexicoo/template.yaml",
-                "logicalId": "HelloWorldFunction"
+                "target": "code",
+                "projectRoot": "lexico/searchManager",
+                "lambdaHandler": "searchManager.manageSearch"
             },
             "lambda": {
+                "runtime": "nodejs12.x",
                 "payload": {},
                 "environmentVariables": {}
             }

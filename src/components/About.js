@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
@@ -38,7 +38,7 @@ export default function About() {
             </Typography>
             <Divider className={classes.divider}/>
             <Typography variant="body1" className={classes.body}>
-                I love translating and composing Latin, and I built Lexico to solve some of the more frustrating aspects of it and help others enjoy Latin as I do. As with all things it is a work in progress, and so long as people  use it I’ll be striving to improve it.
+                I love reading and writing Latin, so I built Lexico to ease some of the more arduous aspects of it and help others enjoy Latin as I do. As with all things it is a work in progress, and so long as people  use it I’ll be striving to improve it.
             </Typography>
             <Divider className={classes.divider}/>
             <Typography variant="subtitle1">

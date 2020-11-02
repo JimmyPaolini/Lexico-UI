@@ -4,7 +4,7 @@ import Box from '@material-ui/core/Box';
 import EtymologyCard from "./EtymologyCard/EtymologyCard";
 import Grow from '@material-ui/core/Grow';
 
-export default function SearchResults({results: entry}) {
+export default function SearchResults({results: entry, search}) {
     const classes = useStyles();
     const growIn = true;
 
@@ -13,7 +13,7 @@ export default function SearchResults({results: entry}) {
             {entry.etymologies.map((etymology, i) => (
                 <Box className={classes.card}>
                     <Grow in={growIn} {...(growIn ? { timeout: 1000 * i } : {})}>
-                        <EtymologyCard etymology={etymology}/>
+                        <EtymologyCard etymology={etymology} search={search}/>
                     </Grow>
                 </Box>
 

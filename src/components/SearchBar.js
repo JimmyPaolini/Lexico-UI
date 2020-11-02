@@ -1,11 +1,11 @@
-import React, {useEffect, useState,} from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
-import MicIcon from '@material-ui/icons/Mic';
-import Typography from "@material-ui/core/Typography";
+// import MicIcon from '@material-ui/icons/Mic';
+// import Typography from "@material-ui/core/Typography";
 
 export default function SearchBar({search, handleSearchChange, handleSearch}) {
     const classes = useStyles();

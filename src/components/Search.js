@@ -47,7 +47,7 @@ export default function Search() {
                 {results
                     ? results === "not found"
                         ? <Typography variant="h4" color="textPrimary">Not found</Typography>
-                        : <SearchResults results={results}/>
+                        : <SearchResults results={results} search={search}/>
                     : loading
                         ? <CircularProgress color="secondary" />
                         : <Home in={!results}/>

@@ -1,21 +1,31 @@
 {
-    "configurations": [{
-        "type": "aws-sam",
-        "request": "direct-invoke",
-        "name": "searchManager.manageSearch",
-        "invokeTarget": {
-            "target": "code",
-            "projectRoot": "lexico/searchManager",
-            "lambdaHandler": "searchManager.manageSearch"
-        },
-        "lambda": {
-            "runtime": "nodejs12.x",
-            "payload": {
-                "json": {
-                    "body": "\"amo\""
-                }
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Debug Chrome",
+            "port": 6006,
+            "urlFilter": "http://localhost:6006/*",
+            "webRoot": "${workspaceFolder}"
+          },
+        {
+            "type": "aws-sam",
+            "request": "direct-invoke",
+            "name": "searchManager.manageSearch",
+            "invokeTarget": {
+                "target": "code",
+                "projectRoot": "lexico/searchManager",
+                "lambdaHandler": "searchManager.manageSearch"
             },
-            "environmentVariables": {}
+            "lambda": {
+                "runtime": "nodejs12.x",
+                "payload": {
+                    "json": {
+                        "body": "\"amo\""
+                    }
+                },
+                "environmentVariables": {}
+            }
         }
-    }]
+    ]
 }

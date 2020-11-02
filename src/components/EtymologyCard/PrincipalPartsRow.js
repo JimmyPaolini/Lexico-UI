@@ -18,8 +18,8 @@ export default function PrincipalPartsRow({principalParts}) {
     if (!window.localStorage.bookmarks) window.localStorage.bookmarks = "";
     const [bookmarked, setBookmarked] = useState(window.localStorage.bookmarks.match(new RegExp(principalPartsRestructured)));
     const toggleBookmark = () => {
-        if (bookmarked) window.localStorage.bookmarks = window.localStorage.bookmarks.replace(`{${principalPartsRestructured}} `, '');
-        else window.localStorage.bookmarks += `{${principalPartsRestructured}} `;
+        if (bookmarked) window.localStorage.bookmarks = window.localStorage.bookmarks.replace(`{${principalPartsRestructured}}`, '');
+        else window.localStorage.bookmarks += `{${principalPartsRestructured}}`;
         setBookmarked(!bookmarked);
     }
     return (

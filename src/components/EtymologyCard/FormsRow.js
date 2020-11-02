@@ -15,45 +15,37 @@ import NounForms from "./NounForms";
 import AdjectiveForms from "./AdjectiveForms";
 import PropTypes from "prop-types";
 
-const posMap = {
-    "verb": VerbForms,
-    "noun": NounForms,
-    "proper noun": NounForms,
-    "adjective": AdjectiveForms,
-    "participle": AdjectiveForms,
-    "adverb": AdjectiveForms,
-}
-
-const posFormsMap = {
-    "verb": ["mood", "voice", "tense", "person", "number"],
-    "noun": ["case", "number"],
-    "proper noun": ["case", "number"],
-    "adjective": ["gender", "case", "number"],
-    "participle": ["gender", "case", "number"],
-    "adverb": ["gender", "case", "number"],
-}
-
-export default function FormsRow({nonlemmaForms, forms, partOfSpeech}) {
+export default function FormsRow({search, forms, partOfSpeech}) {
     const classes = useStyles();
     const [expanded, setExpanded] = useState(false);
     const toggleExpanded = () => setExpanded(!expanded);
+    const searchedForms = searchForms(search, forms, [], []);
 
-    const FormsCard = posMap[partOfSpeech];
+    const FormsCard = {
+        "verb": VerbForms,
+        "noun": NounForms,
+        "proper noun": NounForms,
+        "adjective": AdjectiveForms,
+        "participle": AdjectiveForms,
+        "adverb": AdjectiveForms,
+    }[partOfSpeech];
     return (
         <Paper className={classes.paper} elevation={0}>
-            <List dense className={classes.formsList}>
-                <ListItem>
-                    <ListItemText
-                        secondary={nonlemmaForms}
-                        secondaryTypographyProps={{variant: "overline"}}
-                    />
-                </ListItem>
-            </List>
             <Box className={classes.expandButton}>
                 <IconButton aria-label="expand" onClick={toggleExpanded}>
                     {expanded ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}
                 </IconButton>
             </Box>
+            <List dense className={classes.formsList}>
+                {searchedForms.map(searchedForm => (
+                    <ListItem className={classes.formsListItem}>
+                        <ListItemText
+                            secondary={searchedForm}
+                            secondaryTypographyProps={{variant: "overline"}}
+                        />
+                    </ListItem>
+                ))}
+            </List>
             <Divider variant="inset"/>
             <Collapse in={expanded}>
                 <FormsCard forms={forms}/>
@@ -62,10 +54,62 @@ export default function FormsRow({nonlemmaForms, forms, partOfSpeech}) {
     )
 }
 
+const formNameAbbreviations = {
+    "nominative": "NOM",
+    "genitive": "GEN",
+    "dative": "DAT",
+    "accusative": "ACC",
+    "ablative": "ABL",
+    "vocative": "VOC",
+    "locative": "LOC",
+
+    "masculine": "MASC",
+    "feminine": "FEM",
+    "neuter": "NEU",
+
+    "singular": "SG",
+    "plural": "PL",
+
+    "indicative": "IND",
+    "subjunctive": "SUB",
+    "imperative": "IMP",
+    "infinitive": "INFF",
+    "non finite": "NONF",
+
+    "present": "PRES",
+    "imperfect": "IMP",
+    "future": "FUT",
+    "perfect": "PERF",
+    "pluperfect": "PLUP",
+    "future perfect": "FUTP",
+
+    "active": "ACT",
+    "passive": "PAS",
+
+    "first": "1ST",
+    "second": "2ND",
+    "third": "3RD",
+}
+
+const normalize = str => str.normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+
+function searchForms(search, forms, currentForm, searchedForms) {
+    if (Array.isArray(forms)) {
+        if (forms.some(form => normalize(form).match(new RegExp("^" + search + "$", "i")))) {
+            return [...searchedForms, currentForm.join(" ")];
+        }
+    } else { 
+        for (const key in forms) {
+            searchedForms = searchForms(search, forms[key], [...currentForm, key], searchedForms);
+        }
+    }
+    return searchedForms;
+}
+
 FormsRow.propTypes = {
-    principalParts: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    searchResults: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    bookmarked: PropTypes.bool.isRequired,
+    search: PropTypes.string.isRequired,
+    forms: PropTypes.object.isRequired,
+    partOfSpeech: PropTypes.string.isRequired,
 };
 
 const useStyles = makeStyles(theme => ({
@@ -73,8 +117,14 @@ const useStyles = makeStyles(theme => ({
         borderRadius: 0,
     },
     formsList: {
-        display: "inline-block",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
         minHeight: 40
+    },
+    formsListItem: {
+        height: 16,
+        lineHeight: 16
     },
     expandButton: {
         display: "inline-block",

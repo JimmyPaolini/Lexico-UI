@@ -1,16 +1,16 @@
 import React from 'react';
-import Navigation from './Navigation';
+import About from './About';
 import {muiTheme} from 'storybook-addon-material-ui';
 import theme from '../theme';
 import {BrowserRouter as Router} from "react-router-dom";
 
 export default {
-    title: 'Navigation',
-    component: Navigation,
+    title: 'About',
+    component: About,
     decorators: [muiTheme([theme]), (Story) => <Router><Story/></Router>]
 };
 
-const Template = (args) => <Navigation {...args} />;
+const Template = (args) => <About {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {};

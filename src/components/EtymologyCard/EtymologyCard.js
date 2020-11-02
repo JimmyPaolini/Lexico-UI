@@ -5,13 +5,13 @@ import PrincipalPartsRow from "./PrincipalPartsRow";
 import TranslationsRow from "./TranslationsRow";
 import FormsRow from "./FormsRow";
 
-export default function EtymologyCard({etymology, nonlemmaForms}) {
+export default function EtymologyCard({etymology, search}) {
     const classes = useStyles();
     return (
         <Paper elevation={8} className={classes.paper}>
             <PrincipalPartsRow principalParts={etymology.principalParts}/>
             <TranslationsRow translations={etymology.translations}/>
-            <FormsRow partOfSpeech={etymology.partOfSpeech} forms={etymology.forms} nonlemmaForms={nonlemmaForms}/>
+            <FormsRow partOfSpeech={etymology.partOfSpeech} forms={etymology.forms} search={search}/>
         </Paper>
     )
 }

@@ -1,22 +1,20 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import Fade from '@material-ui/core/Fade';
+// import Fade from '@material-ui/core/Fade';
 import logo from '../logo.png';
 
-export default function Home({in: isIn}) {
+export default function Home() {
     const classes = useStyles();
     return (
-        // <Fade in={isIn}>
-            <Box>
-                {/*<Paper className={classes.announcement}>*/}
-                {/*    <Typography variant="body1">*/}
-                {/*        Announcement, not always present, this day in latin history, roman holiday, link to wikipedia, medieval scientific research, featured content, contains emojis🐋😤💯👀*/}
-                {/*    </Typography>*/}
-                {/*</Paper>*/}
-                <img src={logo} alt="Logo" height={500}/>
-            </Box>
-        // </Fade>
+        <Box>
+            {/*<Paper className={classes.announcement}>*/}
+            {/*    <Typography variant="body1">*/}
+            {/*        Announcement, not always present, this day in latin history, roman holiday, link to wikipedia, medieval scientific research, featured content, contains emojis🐋😤💯👀*/}
+            {/*    </Typography>*/}
+            {/*</Paper>*/}
+            <img src={logo} alt="Logo" height={500}/>
+        </Box>
     );
 }
 

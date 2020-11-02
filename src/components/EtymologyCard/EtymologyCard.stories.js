@@ -16,13 +16,11 @@ const Template = (args) => <EtymologyCard {...args} />;
 export const Amoenus = Template.bind({});
 Amoenus.args = {
     etymology: amoenus.etymologies[0],
-    searchResults: ["amoena, amoenae"],
-    bookmarked: true,
+    search: "amoeno",
 };
 
 export const Fero = Template.bind({});
 Fero.args = {
     etymology: fero.etymologies[0],
-    searchResults: ["fere", "tuli"],
-    bookmarked: false,
+    search: "feram"
 };

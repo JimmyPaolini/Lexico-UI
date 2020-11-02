@@ -1,5 +1,5 @@
 {
-  "name": "Lexico-UI",
+  "name": "lexico-ui",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -16,12 +16,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-<<<<<<< HEAD
     "react-scripts": "3.4.3",
     "typescript": "^4.0.3"
-=======
-    "react-scripts": "3.4.3"
->>>>>>> 84d3b30d410b8f042e6e09ce91eae7f52fc24a4e
   },
   "scripts": {
     "start": "react-scripts start",

@@ -40,98 +40,107 @@ function getWord(word) {
   });
 }
 
-function searchRecurse(search, result) {
+function searchRecurse(search, result, remainingRecurses) {
   var entry, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, etymology, root;
 
   return regeneratorRuntime.async(function searchRecurse$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
-          _context2.next = 2;
-          return regeneratorRuntime.awrap(getWord(search));
+          if (remainingRecurses) {
+            _context2.next = 2;
+            break;
+          }
+
+          return _context2.abrupt("return", result);
 
         case 2:
+          console.log(search, result);
+          _context2.next = 5;
+          return regeneratorRuntime.awrap(getWord(search));
+
+        case 5:
           entry = _context2.sent;
           if (!result.word) result.word = entry.word;
           _iteratorNormalCompletion = true;
           _didIteratorError = false;
           _iteratorError = undefined;
-          _context2.prev = 7;
+          _context2.prev = 10;
           _iterator = entry.etymologies[Symbol.iterator]();
 
-        case 9:
+        case 12:
           if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
-            _context2.next = 22;
+            _context2.next = 25;
             break;
           }
 
           etymology = _step.value;
 
           if (!etymology.root) {
-            _context2.next = 15;
+            _context2.next = 18;
             break;
           }
 
           result.etymologies.push(etymology);
-          _context2.next = 19;
+          _context2.next = 22;
           break;
-
-        case 15:
-          root = etymology.principalParts[0].split(": ")[1];
-          _context2.next = 18;
-          return regeneratorRuntime.awrap(searchRecurse(root, result));
 
         case 18:
+          root = etymology.principalParts[0].split(": ")[1].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+          _context2.next = 21;
+          return regeneratorRuntime.awrap(searchRecurse(root, result, remainingRecurses - 1));
+
+        case 21:
           result = _context2.sent;
 
-        case 19:
-          _iteratorNormalCompletion = true;
-          _context2.next = 9;
-          break;
-
         case 22:
-          _context2.next = 28;
+          _iteratorNormalCompletion = true;
+          _context2.next = 12;
           break;
 
-        case 24:
-          _context2.prev = 24;
-          _context2.t0 = _context2["catch"](7);
+        case 25:
+          _context2.next = 31;
+          break;
+
+        case 27:
+          _context2.prev = 27;
+          _context2.t0 = _context2["catch"](10);
           _didIteratorError = true;
           _iteratorError = _context2.t0;
 
-        case 28:
-          _context2.prev = 28;
-          _context2.prev = 29;
+        case 31:
+          _context2.prev = 31;
+          _context2.prev = 32;
 
           if (!_iteratorNormalCompletion && _iterator["return"] != null) {
             _iterator["return"]();
           }
 
-        case 31:
-          _context2.prev = 31;
+        case 34:
+          _context2.prev = 34;
 
           if (!_didIteratorError) {
-            _context2.next = 34;
+            _context2.next = 37;
             break;
           }
 
           throw _iteratorError;
 
-        case 34:
+        case 37:
+          return _context2.finish(34);
+
+        case 38:
           return _context2.finish(31);
 
-        case 35:
-          return _context2.finish(28);
-
-        case 36:
+        case 39:
           return _context2.abrupt("return", result);
 
-        case 37:
+        case 40:
         case "end":
           return _context2.stop();
       }
     }
-  }, null, null, [[7, 24, 28, 36], [29,, 31, 35]]);
+  }, null, null, [[10, 27, 31, 39], [32,, 34, 38]]);
 }
 
 exports.manageSearch = function _callee(search) {
@@ -149,7 +158,7 @@ exports.manageSearch = function _callee(search) {
           _context3.next = 4;
           return regeneratorRuntime.awrap(searchRecurse(search, {
             etymologies: []
-          }));
+          }, 2));
 
         case 4:
           result = _context3.sent;

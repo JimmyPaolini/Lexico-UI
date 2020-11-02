@@ -15,10 +15,14 @@ const Template = (args) => <FormsRow {...args} />;
 
 export const Amoenus = Template.bind({});
 Amoenus.args = {
-    principalParts: amoenus.etymologies[0].principalParts,
+    nonlemmaForms: "something",
+    forms: amoenus.etymologies[0].forms,
+    partOfSpeech: amoenus.etymologies[0].partOfSpeech
 };
 
 export const Fero = Template.bind({});
 Fero.args = {
-    principalParts: fero.etymologies[0].principalParts,
+    nonlemmaForms: "else",
+    forms: fero.etymologies[0].forms,
+    partOfSpeech: fero.etymologies[0].partOfSpeech
 };

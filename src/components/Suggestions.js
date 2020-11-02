@@ -36,24 +36,27 @@ export default function Suggestions() {
                 </Typography>
                 <TextField
                     variant="outlined"
-                    label="Email Address"
+                    color="secondary"
                     required
+                    label="Your Email Address"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     className={classes.textField}
                 />
                 <TextField
                     variant="outlined"
-                    label="Subject"
+                    color="secondary"
                     required
+                    label="Subject"
                     value={subject}
                     onChange={e => setSubject(e.target.value)}
                     className={classes.textField}
                 />
                 <TextField
                     variant="outlined"
-                    label="Message"
+                    color="secondary"
                     required
+                    label="Message"
                     value={message}
                     onChange={e => setMessage(e.target.value)}
                     className={classes.textField}

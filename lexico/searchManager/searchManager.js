@@ -13,14 +13,17 @@ async function getWord(word) {
     return JSON.parse(response.Body);
 }
 
-async function searchRecurse(search, result) {
+async function searchRecurse(search, result, remainingRecurses) {
+    if (!remainingRecurses) return result;
+    console.log(search, result);
     const entry = await getWord(search);
     if (!result.word) result.word = entry.word;
     for (const etymology of entry.etymologies) {
         if (etymology.root) result.etymologies.push(etymology);
         else {
-            const root = etymology.principalParts[0].split(": ")[1];
-            result = await searchRecurse(root, result);
+            const root = etymology.principalParts[0].split(": ")[1]
+                .normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+            result = await searchRecurse(root, result, remainingRecurses - 1);
         }
     }
     return result;
@@ -34,7 +37,7 @@ exports.manageSearch = async (search) => {
     
     let result;
     try {
-        result = await searchRecurse(search, {etymologies: []});
+        result = await searchRecurse(search, {etymologies: []}, 2);
     } catch (e) {
         return logret(404, "not found");
     }

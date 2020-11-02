@@ -1,32 +1,21 @@
 {
-    "configurations": [
-        {
-            "name": "Launch via NPM",
-            "request": "launch",
-            "runtimeArgs": [
-                "run-script",
-                "debug"
-            ],
-            "runtimeExecutable": "lexico/test/searchManager.test.js",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "type": "pwa-node"
+    "configurations": [{
+        "type": "aws-sam",
+        "request": "direct-invoke",
+        "name": "searchManager.manageSearch",
+        "invokeTarget": {
+            "target": "code",
+            "projectRoot": "lexico/searchManager",
+            "lambdaHandler": "searchManager.manageSearch"
         },
-        {
-            "type": "aws-sam",
-            "request": "direct-invoke",
-            "name": "searchManager.manageSearch",
-            "invokeTarget": {
-                "target": "code",
-                "projectRoot": "lexico/searchManager",
-                "lambdaHandler": "searchManager.manageSearch"
+        "lambda": {
+            "runtime": "nodejs12.x",
+            "payload": {
+                "json": {
+                    "body": "\"amo\""
+                }
             },
-            "lambda": {
-                "runtime": "nodejs12.x",
-                "payload": {},
-                "environmentVariables": {}
-            }
+            "environmentVariables": {}
         }
-    ]
+    }]
 }

@@ -11,38 +11,32 @@ import ListItemText from "@material-ui/core/ListItemText";
 import IconButton from "@material-ui/core/IconButton";
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import Collapse from '@material-ui/core/Collapse';
 
 export default function TranslationsRow({translations}) {
     const classes = useStyles();
     const [expanded, setExpanded] = useState(false);
-    let expanderNecessary = translations.length > 2
-    if (expanderNecessary && !expanded) translations = translations.slice(0, 2);
-    const toggleExpansion = () => {
-        setExpanded(!expanded);
+    const expanderNecessary = translations.length > 2;
+    const toggleExpanded = () => {
+        setExpanded(expanded => !expanded);
     }
     return (
         <Paper className={classes.paper} elevation={0}>
             <List dense className={classes.translationsList} style={{width: expanderNecessary ? "80%" :  "100%"}}>
-                {translations.map((translation, i) => (
-                    <ListItem id={i} className={classes.listItem}>
-                        <ListItemIcon><FiberManualRecordIcon fontSize="small"/></ListItemIcon>
-                        <ListItemText
-                            primary={translation}
-                            primaryTypographyProps={{variant: "body1"}}
-                            className={classes.listItemText}
-                        />
-                    </ListItem>
-                ))}
-                {expanderNecessary && !expanded && (
+                {translations.slice(0, 2).map((translation, i) => Translation(translation, i, classes))}
+                <Collapse in={expanded || !expanderNecessary}>
+                    {translations.slice(3).map((translation, i) => Translation(translation, i, classes))}
+                </Collapse>
+                {/* {expanderNecessary && !expanded && (
                     <ListItem id={-1} style={{height: "16px"}}>
                         <ListItemIcon/>
                         <ListItemText primary="..."/>
                     </ListItem>
-                )}
+                )} */}
             </List>
             {expanderNecessary &&
                 <Box className={classes.expandButton}>
-                    <IconButton aria-label="expand" onClick={toggleExpansion}>
+                    <IconButton aria-label="expand" onClick={toggleExpanded}>
                         {expanded ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}
                     </IconButton>
                 </Box>
@@ -51,6 +45,17 @@ export default function TranslationsRow({translations}) {
         </Paper>
     )
 }
+
+const Translation = (translation, i, classes) => (
+    <ListItem id={i} className={classes.listItem}>
+        <ListItemIcon><FiberManualRecordIcon fontSize="small"/></ListItemIcon>
+        <ListItemText
+            primary={translation}
+            primaryTypographyProps={{variant: "body1"}}
+            className={classes.listItemText}
+        />
+    </ListItem>
+);
 
 const width = 382;
 const useStyles = makeStyles(theme => ({

@@ -24,7 +24,7 @@ export default function PrincipalPartsRow({principalParts}) {
     }
     return (
         <Paper className={classes.paper} elevation={0}>
-            <List dense className={classes.translationsList}>
+            <List dense className={classes.principalPartsList}>
                 <ListItem>
                     <ListItemText
                         primary={principalPartsRestructured}
@@ -52,7 +52,7 @@ const useStyles = makeStyles(theme => ({
     paper: {
         borderRadius: 0,
     },
-    translationsList: {
+    principalPartsList: {
         // padding: "14px 20px 13px 20px"
     }
 }));

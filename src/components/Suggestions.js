@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import Paper from '@material-ui/core/Paper';
+import Card from '@material-ui/core/Card';
 // import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
@@ -29,37 +30,33 @@ export default function Suggestions() {
         console.log(email, subject, message)
     }
 
+    const textFieldOptions = {
+        variant: "outlined",
+        color: "secondary",
+        required: true,
+        className: classes.textField
+    }
+
     return (
-        <Paper className={classes.paper}>
+        <Grid container justify="center" alignItems="center">
+            <Card className={classes.card}>
                 <Typography variant="h4" className={classes.body}>
                     Suggestions
                 </Typography>
-                <TextField
-                    variant="outlined"
-                    color="secondary"
-                    required
+                <TextField {...textFieldOptions}
                     label="Your Email Address"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
-                    className={classes.textField}
                 />
-                <TextField
-                    variant="outlined"
-                    color="secondary"
-                    required
+                <TextField {...textFieldOptions}
                     label="Subject"
                     value={subject}
                     onChange={e => setSubject(e.target.value)}
-                    className={classes.textField}
                 />
-                <TextField
-                    variant="outlined"
-                    color="secondary"
-                    required
+                <TextField {...textFieldOptions}
                     label="Message"
                     value={message}
                     onChange={e => setMessage(e.target.value)}
-                    className={classes.textField}
                     multiline
                     rows={4}
                 />
@@ -86,15 +83,16 @@ export default function Suggestions() {
                     ))}
                 </List>
                 <Typography variant="body1">
-                    To edit something yourself, edit it on Wiktionary!
+                    To edit an entry yourself, just edit it on Wiktionary!
                     (All words, translations, and grammatical information are parsed weekly from Wiktionary and Wikipedia)
                 </Typography>
-            </Paper>
+            </Card>
+        </Grid>
     );
 }
 
 const useStyles = makeStyles((theme) => ({
-    paper: {
+    card: {
         padding: theme.spacing(1),
         marginTop: theme.spacing(2),
         width: "42%"

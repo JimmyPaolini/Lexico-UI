@@ -11,7 +11,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
+import { useHistory } from "react-router-dom";
 import pages from '../pages';
+import { Grid } from '@material-ui/core';
 
 export default function Navigation() {
     const classes = useStyles();
@@ -19,22 +21,34 @@ export default function Navigation() {
     const toggleDrawer = () => setOpen(!open);
 
     const pageName = window.location.pathname.match(/(?<=\/).*(?=\/)?/)[0];
-    const [selected, setSelected] = useState(pageName);
+    const [selected, setSelected] = useState(pageName || "search");
+
+    const history = useHistory();
+    useEffect(() => {
+        const navigationKeybind = e => {
+            if (document.activeElement.tagName === "INPUT") return;
+            const page = pages.find(page => page.keybind === e.key);
+            if (page) history.push("/" + page.name);
+            if (page) setSelected(page.name);
+        }
+        window.addEventListener("keypress", navigationKeybind);
+        return () => window.removeEventListener("keypress", navigationKeybind);
+    });
 
     return (
         <Drawer
             variant="permanent"
-            className={open ? classes.drawerOpen : classes.drawerClosed}
+            // className={open ? classes.drawerOpen : classes.drawerClosed}
             classes={{paper: open ? classes.drawerOpen : classes.drawerClosed}}
         >
+            <Grid item>
             <List>
-                <ListItem className={classes.toggle}>
+                <ListItem className={classes.header}>
                     <Typography variant="h4" className={classes.title}>Lexico</Typography>
                     <IconButton
-                        aria-label="toggle navigation drawer"
                         onClick={toggleDrawer}
-                        edge={!open ? "start" : false}
-                        className={classes.toggleButton}
+                        className={classes.expander}
+                        aria-label="toggle navigation drawer"
                     >
                         {open ? <ChevronLeftIcon /> : <MenuIcon />}
                     </IconButton>
@@ -53,26 +67,26 @@ export default function Navigation() {
                     </ListItem>
                 )}
             </List>
+            </Grid>
         </Drawer>
     );
 }
 
-const drawerWidth = 196;
 const useStyles = makeStyles((theme) => ({
     drawerOpen: {
-        width: drawerWidth,
+        width: theme.spacing(24),
         transition: theme.transitions.create('width', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.enteringScreen,
         }),
     },
     drawerClosed: {
+        width: theme.spacing(6),
         transition: theme.transitions.create('width', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
         overflowX: 'hidden',
-        width: theme.spacing(6),
         [theme.breakpoints.up('sm')]: {
             width: theme.spacing(7),
         },
@@ -80,16 +94,15 @@ const useStyles = makeStyles((theme) => ({
     title: {
         position: "relative",
         float: "left",
-        right: "12px",
-        // color: theme.palette.primary.main
+        right: 12,
     },
-    toggle: {
+    header: {
         display: "flex",
         justifyContent: "flex-end"
     },
-    toggleButton: {
+    expander: {
         display: "inline-block",
         position: "relative",
-        left: "12px"
+        left: 12
     },
 }));

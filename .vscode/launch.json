@@ -1,31 +1,19 @@
 {
     "configurations": [
         {
+            "name": "Search",
+            "program": "${workspaceFolder}/src/test/search.test.js",
+            "request": "launch",
+            "skipFiles": ["<node_internals>/**"],
+            "type": "node"
+        },
+        {
             "type": "chrome",
             "request": "launch",
-            "name": "Debug Chrome",
+            "name": "Chrome 6006",
             "port": 6006,
             "urlFilter": "http://localhost:6006/*",
             "webRoot": "${workspaceFolder}"
-          },
-        {
-            "type": "aws-sam",
-            "request": "direct-invoke",
-            "name": "searchManager.manageSearch",
-            "invokeTarget": {
-                "target": "code",
-                "projectRoot": "lexico/searchManager",
-                "lambdaHandler": "searchManager.manageSearch"
-            },
-            "lambda": {
-                "runtime": "nodejs12.x",
-                "payload": {
-                    "json": {
-                        "body": "\"amo\""
-                    }
-                },
-                "environmentVariables": {}
-            }
         }
     ]
 }

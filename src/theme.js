@@ -1,5 +1,4 @@
 import {createMuiTheme} from "@material-ui/core/styles";
-
 export default createMuiTheme({
     palette: {
         type: "dark",
@@ -9,6 +8,9 @@ export default createMuiTheme({
         secondary: {
             main: "#02662C",
         },
+        background: {
+            default: "#66023C"
+        }
     },
     typography: {
         fontFamily: "Helvetica Neue"

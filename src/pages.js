@@ -1,69 +1,77 @@
+import Search from "./components/Search/Search"
+import Bookmarks from "./components/Bookmarks/Bookmarks"
+import Literature from "./components/Literature/Literature"
+import Grammar from "./components/Grammar"
+// import Dictionary from "./components/Dictionary"
+import Settings from "./components/Settings"
+import Suggestions from "./components/Suggestions"
+import About from "./components/About"
+
 import React from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
-import VisibilityIcon from "@material-ui/icons/Visibility";
+// import VisibilityIcon from "@material-ui/icons/Visibility";
 import CreateIcon from "@material-ui/icons/Create";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
 import SettingsIcon from "@material-ui/icons/Settings";
 import InboxIcon from "@material-ui/icons/Inbox";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 
-import Search from "./components/Search"
-import Bookmarks from "./components/Bookmarks"
-import Literature from "./components/Literature"
-import Grammar from "./components/Grammar"
-import Dictionary from "./components/Dictionary"
-import Settings from "./components/Settings"
-import Suggestions from "./components/Suggestions"
-import About from "./components/About"
-
 export default [
     {
         Name: "Search",
         name: "search",
         icon: <SearchIcon/>,
-        component: <Search/>
+        component: <Search/>,
+        keybind: " "
     },
     {
         Name: "Bookmarks",
         name: "bookmarks",
         icon: <BookmarkIcon/>,
-        component: <Bookmarks/>
+        component: <Bookmarks/>,
+        keybind: "b"
     },
     {
         Name: "Literature",
         name: "literature",
-        icon: <VisibilityIcon/>,
-        component: <Literature/>
+        icon: <MenuBookIcon/>,
+        component: <Literature/>,
+        keybind: "l"
     },
     {
         Name: "Grammar",
         name: "grammar",
         icon: <CreateIcon/>,
-        component: <Grammar/>
+        component: <Grammar/>,
+        keybind: "g"
     },
-    {
-        Name: "Dictionary",
-        name: "dictionary",
-        icon: <MenuBookIcon/>,
-        component: <Dictionary/>
-    },
+    // {
+    //     Name: "Dictionary",
+    //     name: "dictionary",
+    //     icon: <VisibilityIcon/>,
+    //     component: <Dictionary/>,
+    //     keybind: "d"
+    // },
     {
         Name: "Settings",
         name: "settings",
         icon: <SettingsIcon/>,
-        component: <Settings/>
+        component: <Settings/>,
+        keybind: "s"
     },
     {
         Name: "Suggestions",
         name: "suggestions",
         icon: <InboxIcon/>,
-        component: <Suggestions/>
+        component: <Suggestions/>,
+        keybind: ""
     },
     {
         Name: "About",
         name: "about",
         icon: <AccountBalanceIcon/>,
-        component: <About/>
+        component: <About/>,
+        keybind: ""
     }
 ]

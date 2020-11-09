@@ -1,0 +1,4 @@
+stage: prod
+lambda: ${file(infra/services/lambda.yml)}
+s3: ${file(infra/services/s3.yml)}
+iam: ${file(infra/services/iam.yml)}

@@ -1,25 +1,29 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import Card from '@material-ui/core/Card';
+import Divider from '@material-ui/core/Divider';
 import PrincipalPartsRow from "./PrincipalPartsRow";
 import TranslationsRow from "./TranslationsRow";
 import FormsRow from "./FormsRow";
 
-export default function EtymologyCard({etymology, search}) {
+export default function EtymologyCard({etymology, searched}) {
     const classes = useStyles();
     return (
-        <Paper elevation={8} className={classes.paper}>
-            <PrincipalPartsRow principalParts={etymology.principalParts}/>
+        <Card elevation={4} className={classes.etymologyCard}>
+            <PrincipalPartsRow etymology={etymology}/>
+            <Divider variant="inset"/>
             <TranslationsRow translations={etymology.translations}/>
-            <FormsRow partOfSpeech={etymology.partOfSpeech} forms={etymology.forms} search={search}/>
-        </Paper>
+            <Divider variant="inset"/>
+            <FormsRow partOfSpeech={etymology.partOfSpeech} forms={etymology.forms} searched={searched}/>
+        </Card>
     )
 }
 
-const width = 382;
+export const width = 382;
 const useStyles = makeStyles(theme => ({
-    paper: {
+    etymologyCard: {
         width,
-        display: "inline-block"
+        display: "inline-block",
+        paddingBottom: theme.spacing(0),
     }
 }));

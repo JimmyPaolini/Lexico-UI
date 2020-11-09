@@ -1,7 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import Paper from '@material-ui/core/Paper';
+import Card from '@material-ui/core/Card';
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
@@ -26,13 +27,14 @@ const upcomingFeatures = [
 
 const dataCollection = [
     "On Client - all searches, Literature downloads & scroll positions",
-    "On Server - universal word search frequency (untraceable to user)"
+    "On Server - global word search frequency (can't trace back to user)"
 ];
 
 export default function About() {
     const classes = useStyles();
     return (
-        <Paper className={classes.paper}>
+        <Grid container justify="center" alignItems="center">
+        <Card className={classes.card}>
             <Typography variant="h4" className={classes.body}>
                 About
             </Typography>
@@ -98,12 +100,13 @@ export default function About() {
                     Omnia mūtantur, nihil īnterit
                 </Typography>
             </Box>
-        </Paper>
+        </Card>
+                    </Grid>
     );
 }
 
 const useStyles = makeStyles((theme) => ({
-    paper: {
+    card: {
         padding: theme.spacing(1),
         marginTop: theme.spacing(2),
         width: "42%"

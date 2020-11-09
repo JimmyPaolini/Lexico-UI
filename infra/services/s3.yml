@@ -1,0 +1,11 @@
+DictionaryBucket:
+  Type:   AWS::S3::Bucket
+  Properties:
+    BucketName: lexico-dictionary-${self:provider.stage}
+
+StaticSiteBucket:
+  Type:   AWS::S3::Bucket
+  Properties:
+    BucketName: lexicoo-static-site-${self:provider.stage}
+    WebsiteConfiguration:
+      IndexDocument: index.html

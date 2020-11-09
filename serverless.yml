@@ -1,0 +1,34 @@
+service: lexico
+custom: ${file(infra/environments/${opt:stage}.yml)}
+
+provider:
+  name: aws
+  region: us-east-1
+  stage: ${self:custom.stage}
+  runtime: nodejs12.x
+  deploymentBucket:
+    name: lexico-deploy
+    serverSideEncryption: AES256
+  versionFunctions: false
+  environment:
+    ENV: ${self:custom.stage}
+  httpApi:
+    name: lexico-${self:provider.stage}
+    payload: '2.0'
+    cors: true
+
+package:
+  artifact: lambda.zip
+
+functions: ${self:custom.lambda}
+
+resources:
+  Resources:
+    DictionaryBucket: ${self:custom.s3.DictionaryBucket}
+    StaticSiteBucket: ${self:custom.s3.StaticSiteBucket}
+    SearchRole: ${self:custom.iam.SearchRole}
+
+#  Outputs:
+#     NewOutput:
+#       Description: "Description for the output"
+#       Value: "Some output value"

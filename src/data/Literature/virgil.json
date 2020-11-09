@@ -1,0 +1,101 @@
+{
+    "author": "Publius Vergilius Maro",
+    "work": {
+        "title": "Virgil",
+        "subworks": [
+            {
+                "title": "Aeneid",
+                "subworks": [
+                    {
+                        "title": "Book I"
+                    },
+                    {
+                        "title": "Book II"
+                    },
+                    {
+                        "title": "Book III"
+                    },
+                    {
+                        "title": "Book IV"
+                    },
+                    {
+                        "title": "Book V"
+                    },
+                    {
+                        "title": "Book VI"
+                    },
+                    {
+                        "title": "Book VII"
+                    },
+                    {
+                        "title": "Book VIII"
+                    },
+                    {
+                        "title": "Book IX"
+                    },
+                    {
+                        "title": "Book X"
+                    },
+                    {
+                        "title": "Book XI"
+                    },
+                    {
+                        "title": "Book XII"
+                    }
+                ]
+            },
+            {
+                "title": "Ecologues",
+                "subworks": [
+                    {
+                        "title": "Book I"
+                    },
+                    {
+                        "title": "Book II"
+                    },
+                    {
+                        "title": "Book III"
+                    },
+                    {
+                        "title": "Book IV"
+                    },
+                    {
+                        "title": "Book V"
+                    },
+                    {
+                        "title": "Book VI"
+                    },
+                    {
+                        "title": "Book VII"
+                    },
+                    {
+                        "title": "Book VIII"
+                    },
+                    {
+                        "title": "Book IX"
+                    },
+                    {
+                        "title": "Book X"
+                    }
+                ]
+            },
+            {
+                "title": "Georgicon",
+                "subworks": [
+                    {
+                        "title": "Book I"
+                    },
+                    {
+                        "title": "Book II"
+                    },
+                    {
+                        "title": "Book III"
+                    },
+                    {
+                        "title": "Book IV"
+                    }
+                ]
+            }
+        ]
+    }
+}

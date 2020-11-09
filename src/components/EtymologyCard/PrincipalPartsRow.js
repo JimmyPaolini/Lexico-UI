@@ -1,58 +1,47 @@
 import React, { useState } from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Divider from '@material-ui/core/Divider';
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import CardHeader from '@material-ui/core/CardHeader';
 import IconButton from '@material-ui/core/IconButton';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
-import PropTypes from "prop-types";
+import {isBookmarked, createBookmark, deleteBookmark} from "../Bookmarks/BookmarksController";
+import {getId} from "../../globals";
 
-export default function PrincipalPartsRow({principalParts}) {
+export default function PrincipalPartsRow({etymology}) {
     const classes = useStyles();
-    const principalPartsRestructured = principalParts.map(pp => pp.split(": ")[1].replace(" or ", "/")).join(", ");
+    const principalPartsRestructured = getId(etymology);
 
-    if (!window.localStorage.bookmarks) window.localStorage.bookmarks = "";
-    const [bookmarked, setBookmarked] = useState(window.localStorage.bookmarks.match(new RegExp(principalPartsRestructured)));
+    const [bookmarked, setBookmarked] = useState(isBookmarked(etymology));
     const toggleBookmark = () => {
-        if (bookmarked) window.localStorage.bookmarks = window.localStorage.bookmarks.replace(`{${principalPartsRestructured}}`, '');
-        else window.localStorage.bookmarks += `{${principalPartsRestructured}}`;
+        if (bookmarked) deleteBookmark(etymology);
+        else createBookmark(etymology);
         setBookmarked(!bookmarked);
     }
     return (
-        <Paper className={classes.paper} elevation={0}>
-            <List dense className={classes.principalPartsList}>
-                <ListItem>
-                    <ListItemText
-                        primary={principalPartsRestructured}
-                        primaryTypographyProps={{variant: "subtitle1"}}
-                    />
-                    <ListItemSecondaryAction>
-                        <IconButton edge="end" aria-label="comments" onClick={toggleBookmark}>
-                            {bookmarked ? <BookmarkIcon/> : <BookmarkBorderIcon/>}
-                        </IconButton>
-                    </ListItemSecondaryAction>
-                </ListItem>
-            </List>
-            <Divider variant="inset"/>
-        </Paper>
+        <CardHeader 
+            title={principalPartsRestructured}
+            titleTypographyProps={{variant: "subtitle1"}}
+            subheader={`${etymology.partOfSpeech}, ${etymology.inflection}`}
+            subheaderTypographyProps={{variant: "subtitle2"}}
+            className={classes.principalPartsRow}
+            aria-label="Principal Parts and Inflection"
+            action={
+                <IconButton onClick={toggleBookmark} className={classes.bookmark} aria-label="Bookmark">
+                    {bookmarked ? <BookmarkIcon/> : <BookmarkBorderIcon/>}
+                </IconButton>
+            }
+        />
     )
 }
 
-PrincipalPartsRow.propTypes = {
-    principalParts: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    searchResults: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    bookmarked: PropTypes.bool.isRequired,
-};
-
 const useStyles = makeStyles(theme => ({
-    paper: {
-        borderRadius: 0,
+    principalPartsRow: {
+        paddingTop: theme.spacing(1),
+        paddingBottom: theme.spacing(1),
     },
-    principalPartsList: {
-        // padding: "14px 20px 13px 20px"
+    bookmark: {
+        display: "inline-block",
+        position: "relative",
+        top: 8
     }
 }));

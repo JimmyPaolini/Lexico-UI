@@ -1,136 +1,102 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
+import CardContent from '@material-ui/core/CardContent';
+import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
+import Typography from "@material-ui/core/Typography";
 import IconButton from '@material-ui/core/IconButton';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowUp';
 import Collapse from '@material-ui/core/Collapse';
-import VerbForms from "./VerbForms";
-import NounForms from "./NounForms";
-import AdjectiveForms from "./AdjectiveForms";
-import PropTypes from "prop-types";
+import VerbForms from "./PartsOfSpeech/VerbForms";
+import NounForms from "./PartsOfSpeech/NounForms";
+import AdjectiveForms from "./PartsOfSpeech/AdjectiveForms";
+const formNameAbbreviations = require("../../formAbbreviations.json");
 
-export default function FormsRow({search, forms, partOfSpeech}) {
+export default function FormsRow({searched, forms, partOfSpeech}) {
     const classes = useStyles();
     const [expanded, setExpanded] = useState(false);
     const toggleExpanded = () => setExpanded(!expanded);
-    const searchedForms = searchForms(search, forms, [], []);
+    let searchedForms = [];
+    try {
+        searchedForms = getSearchedForms(searched, forms, [], searchedForms);
+    } catch(e) {}
 
-    const FormsCard = {
+    useEffect(() => {
+        if (!window.location.pathname.match(/^\/search/)) return;
+        const toggleExpandedKeybind = e => {
+            if (e.key === "f" && document.activeElement.tagName !== "INPUT") toggleExpanded();
+        }
+        window.addEventListener("keypress", toggleExpandedKeybind);
+        return () => window.removeEventListener("keypress", toggleExpandedKeybind);
+    });
+
+    if (!searched) searched = partOfSpeech === "verb" ? "Conjugation" : "Declension";
+
+    const FormsCard = !forms ? null : {
         "verb": VerbForms,
         "noun": NounForms,
         "proper noun": NounForms,
         "adjective": AdjectiveForms,
         "participle": AdjectiveForms,
-        "adverb": AdjectiveForms,
+        "pronoun": AdjectiveForms,
     }[partOfSpeech];
-    return (
-        <Paper className={classes.paper} elevation={0}>
-            <Box className={classes.expandButton}>
-                <IconButton aria-label="expand" onClick={toggleExpanded}>
-                    {expanded ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}
-                </IconButton>
-            </Box>
-            <List dense className={classes.formsList}>
-                {searchedForms.map(searchedForm => (
-                    <ListItem className={classes.formsListItem}>
-                        <ListItemText
-                            secondary={searchedForm}
-                            secondaryTypographyProps={{variant: "overline"}}
-                        />
-                    </ListItem>
-                ))}
-            </List>
-            <Divider variant="inset"/>
-            <Collapse in={expanded}>
+
+    return (<>
+        <CardContent className={classes.formsRow}>
+            <Grid container direction="row" justify="space-evenly">
+                <Grid container item direction="column" justify="center" xs={true}>
+                    <Typography variant="body1">{searched}</Typography>
+                    {searchedForms.map(searchedForm => (
+                        <Typography variant="button" className={classes.searchedForm}>
+                            {searchedForm}
+                        </Typography>
+                    ))}
+                </Grid>
+                {FormsCard &&
+                    <Grid item>
+                        <IconButton onClick={toggleExpanded} disableRipple aria-label="expand forms">
+                            <KeyboardArrowDownIcon className={expanded ? classes.upSideDown : classes.rightSideUp}/>
+                        </IconButton>
+                    </Grid>
+                }
+            </Grid>
+        </CardContent>
+        {FormsCard &&
+            <Collapse in={expanded && FormsCard}>
+                <Divider variant="inset"/>
                 <FormsCard forms={forms}/>
             </Collapse>
-        </Paper>
-    )
-}
-
-const formNameAbbreviations = {
-    "nominative": "NOM",
-    "genitive": "GEN",
-    "dative": "DAT",
-    "accusative": "ACC",
-    "ablative": "ABL",
-    "vocative": "VOC",
-    "locative": "LOC",
-
-    "masculine": "MASC",
-    "feminine": "FEM",
-    "neuter": "NEU",
-
-    "singular": "SG",
-    "plural": "PL",
-
-    "indicative": "IND",
-    "subjunctive": "SUB",
-    "imperative": "IMP",
-    "infinitive": "INFF",
-    "non finite": "NONF",
-
-    "present": "PRES",
-    "imperfect": "IMP",
-    "future": "FUT",
-    "perfect": "PERF",
-    "pluperfect": "PLUP",
-    "future perfect": "FUTP",
-
-    "active": "ACT",
-    "passive": "PAS",
-
-    "first": "1ST",
-    "second": "2ND",
-    "third": "3RD",
+        }
+    </>);
 }
 
 const normalize = str => str.normalize("NFD").replace(/[\u0300-\u036f]/g,"");
 
-function searchForms(search, forms, currentForm, searchedForms) {
+function getSearchedForms(searched, forms, currentForm, searchedForms) {
     if (Array.isArray(forms)) {
-        if (forms.some(form => normalize(form).match(new RegExp("^" + search + "$", "i")))) {
+        if (forms.some(form => normalize(form).match(new RegExp("^" + searched + "$", "i")))) {
             return [...searchedForms, currentForm.join(" ")];
         }
-    } else { 
+    } else {
         for (const key in forms) {
-            searchedForms = searchForms(search, forms[key], [...currentForm, key], searchedForms);
+            searchedForms = getSearchedForms(searched, forms[key], [...currentForm, formNameAbbreviations[key]], searchedForms);
         }
     }
     return searchedForms;
 }
 
-FormsRow.propTypes = {
-    search: PropTypes.string.isRequired,
-    forms: PropTypes.object.isRequired,
-    partOfSpeech: PropTypes.string.isRequired,
-};
-
 const useStyles = makeStyles(theme => ({
-    paper: {
-        borderRadius: 0,
+    formsRow: {
+        paddingTop: theme.spacing(1),
+        paddingBottom: theme.spacing(1),
+        paddingRight: theme.spacing(1),
     },
-    formsList: {
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        minHeight: 40
+    rightSideUp: {
+        transition: "250ms ease",
+        transform: "rotateZ(0deg)",
     },
-    formsListItem: {
-        height: 16,
-        lineHeight: 16
-    },
-    expandButton: {
-        display: "inline-block",
-        position: "relative",
-        float: "right",
-        top: "4px",
-        right: "4px"
+    upSideDown: {
+        transition: "250ms ease",
+        transform: "rotateZ(-180deg)",
     },
 }));

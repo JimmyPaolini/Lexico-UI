@@ -31,9 +31,9 @@ export default function TranslationsRow({translations}) {
         <CardContent className={classes.translationsRow}>
             <Grid container direction="row" justify="space-evenly">
                 <Grid container item direction="column" xs={expandable}>
-                    {translations.slice(0, 2).map(translation => Translation(translation))}
+                    {translations.slice(0, 2).map((translation, i) => Translation(translation, i))}
                     <Collapse in={expanded || !expandable} timeout={300}>
-                        {translations.slice(2).map((translation, i) => Translation(translation))}
+                        {translations.slice(2).map((translation, i) => Translation(translation, i))}
                     </Collapse>
                 </Grid>
                 {expandable && 
@@ -48,8 +48,8 @@ export default function TranslationsRow({translations}) {
     )
 }
 
-const CreateTranslation = classes => translation => (
-    <Grid container item spacing={1} wrap="nowrap">
+const CreateTranslation = classes => (translation, i) => (
+    <Grid container item spacing={1} wrap="nowrap" key={i}>
         <Grid item>
             <FiberManualRecordIcon fontSize="small" className={classes.bullet}/>
         </Grid>

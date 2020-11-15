@@ -3,7 +3,7 @@ const s3 = new AWS.S3({region: process.env.AWS_REGION});
 const Bucket = "lexico-dictionary-" + process.env.ENV;
 
 exports.search = async (event) => {
-    console.log("Event:", JSON.stringify(event, null, 2));
+    // console.log("Event:", JSON.stringify(event, null, 2));
     const word = normalize(event.queryStringParameters.search.toLowerCase());
     
     const results = [];
@@ -11,7 +11,7 @@ exports.search = async (event) => {
     try {
         entry1 = await getEntry(word);
     } catch (e) {
-        return logret(404, `word not found in dictionary: ${e}`);
+        return logret(404, `Error:  word not found in dictionary: ${e}`);
     }
     for (const etymology1 of entry1.etymologies) {
         if (etymology1.root) {
@@ -26,20 +26,21 @@ exports.search = async (event) => {
                     )
                 );
                 if (etymology2) results.push(etymology2);
-                else logret(404, `root etymology not found in entry: ${entry2}`);
+                else logret(404, `Error: root etymology not found in entry: ${entry2}`);
             } catch (e) {
-                logret(404, `root word "${etymology1Root}" not found in dictionary: ${e}`);
+                logret(404, `Error: root word "${etymology1Root}" not found in dictionary: ${e}`);
             }
         }
     } 
     
-    return logret(200, results);
+    return {statusCode: 200, body: JSON.stringify(results)};
 };
 
 async function getEntry(word) {
+    console.log("Getting entry:", word);
     const response = await s3.getObject({Bucket, Key: `${word}.json`}).promise();
     const entry = JSON.parse(response.Body);
-    console.log("Got entry:", JSON.stringify(entry, null, 2));
+    // console.log("Got entry:", JSON.stringify(entry, null, 2));
     return entry;
 }
 

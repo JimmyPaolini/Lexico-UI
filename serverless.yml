@@ -6,6 +6,9 @@ provider:
   region: us-east-1
   stage: ${self:custom.stage}
   runtime: nodejs12.x
+  memorySize: 128
+  timeout: 16
+  role: Role
   deploymentBucket:
     name: lexico-deploy
     serverSideEncryption: AES256
@@ -18,17 +21,13 @@ provider:
     cors: true
 
 package:
-  artifact: lambda.zip
+  individually: true
 
 functions: ${self:custom.lambda}
 
 resources:
   Resources:
+    Role: ${self:custom.iam.Role}
     DictionaryBucket: ${self:custom.s3.DictionaryBucket}
+    LiteratureBucket: ${self:custom.s3.LiteratureBucket}
     StaticSiteBucket: ${self:custom.s3.StaticSiteBucket}
-    SearchRole: ${self:custom.iam.SearchRole}
-
-#  Outputs:
-#     NewOutput:
-#       Description: "Description for the output"
-#       Value: "Some output value"

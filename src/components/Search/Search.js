@@ -24,9 +24,7 @@ export default function Search() {
     const [loading, setLoading] = useState(false);
     const [searched, setSearched] = useState("");
 
-    const handleSearch = e => {
-        if (e.keyCode !== 13) return;
-        const search = e.target.value;
+    const handleSearchExecute = e => {
         setResults(null);
         if (!search) return;
         setLoading(true);
@@ -43,10 +41,10 @@ export default function Search() {
     return (
         <Grid container direction="column" alignItems="center">
             <Grid item>
-                <SearchBar search={search} handleSearchChange={e => setSearch(e.target.value)} handleSearch={handleSearch} loading={loading}/>
+                <SearchBar search={search} handleSearchChange={e => setSearch(e.target.value)} handleSearchExecute={handleSearchExecute} loading={loading} target="lexico"/>
             </Grid>
             <Grid item container justify="center">
-                {!results && <Home in={true}/>}
+                {!results && <Home />}
                 {results === "not found" && <Typography variant="h4" color="textPrimary">Not found</Typography>}
                 <SearchResults results={results} searched={searched}/>
             </Grid>

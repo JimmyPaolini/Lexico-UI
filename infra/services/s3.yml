@@ -3,6 +3,11 @@ DictionaryBucket:
   Properties:
     BucketName: lexico-dictionary-${self:provider.stage}
 
+LiteratureBucket:
+  Type:   AWS::S3::Bucket
+  Properties:
+    BucketName: lexico-literature-${self:provider.stage}
+
 StaticSiteBucket:
   Type:   AWS::S3::Bucket
   Properties:

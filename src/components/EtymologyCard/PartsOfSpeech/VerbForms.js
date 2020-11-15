@@ -98,7 +98,7 @@ const verbFormsRestructure = conjugations => {
     structure.IMP["IMPERATIVE"].PAS[2].center = conjugations?.imperative?.passive?.future?.singular?.second?.join?.(",\n");
     structure.IMP["IMPERATIVE"].PAS[4].center = conjugations?.imperative?.passive?.future?.singular?.third?.join?.(",\n");
     structure.IMP["IMPERATIVE"].PAS[1].center = conjugations?.imperative?.passive?.present?.plural?.second?.join?.(",\n");
-    // structure.IMP["-"].PAS[3].center = conjugations?.imperative?.passive?.future?.plural?.second?.join?.(",\n");
+    // structure.IMP["IMPERATIVE"].PAS[3].center = conjugations?.imperative?.passive?.future?.plural?.second?.join?.(",\n");
     structure.IMP["IMPERATIVE"].PAS[5].center = conjugations?.imperative?.passive?.future?.plural?.third?.join?.(",\n");
 
     structure.INF["INFINITIVE"]["-"][0].center = conjugations?.["non-finite"]?.infinitive?.active?.present?.join?.(",\n");

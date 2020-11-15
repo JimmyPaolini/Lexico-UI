@@ -1,25 +1,30 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Fade from '@material-ui/core/Fade';
-// import Paper from '@material-ui/core/Paper';
-// import Typography from '@material-ui/core/Typography';
-import logo from '../../logo.png';
+import Grow from '@material-ui/core/Grow';
+import Box from '@material-ui/core/Box';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import {Context} from "../../App";
 
 export default function Home({announcement}) {
     const classes = useStyles();
-    const [fadeIn, setFadeIn] = useState(false);
+    const {Logo} = useContext(Context);
 
-    return (
-        <Fade in={fadeIn} timeout={100}>
-            {/* {announcement ? <Paper className={classes.announcement}>
-               {/*eslint-disable-next-line jsx-a11y/accessible-emoji*}
-               <Typography variant="body1">
-                   Announcement, not always present, this day in latin history, roman holiday, link to wikipedia, medieval scientific research, featured content, contains emojis🐋😤💯👀
-               </Typography>
-            </Paper> : null} */}
-            <img src={logo} onLoad={() => setFadeIn(true)} height={500} alt="Logo" />
-        </Fade>
-    );
+    return (<>
+        <Grow in>
+            <Box>
+                <Logo />
+            </Box>
+        </Grow>
+            {announcement && 
+                <Paper className={classes.announcement}>
+                    {/* eslint-disable-next-line jsx-a11y/accessible-emoji */}
+                    <Typography variant="body1">
+                        Announcement, not always present, this day in latin history, roman holiday, link to wikipedia, medieval scientific research, featured content, contains emojis🐋😤💯👀
+                    </Typography>
+                </Paper>
+            }
+    </>);
 }
 
 const useStyles = makeStyles((theme) => ({

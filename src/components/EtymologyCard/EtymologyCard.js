@@ -6,7 +6,7 @@ import PrincipalPartsRow from "./PrincipalPartsRow";
 import TranslationsRow from "./TranslationsRow";
 import FormsRow from "./FormsRow";
 
-export default function EtymologyCard({etymology, searched}) {
+export default function EtymologyCard({etymology, searched=""}) {
     const classes = useStyles();
     return (
         <Card elevation={4} className={classes.etymologyCard}>

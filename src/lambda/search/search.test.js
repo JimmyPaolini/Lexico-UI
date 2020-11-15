@@ -1,4 +1,6 @@
-const {search} = require("../lambda/search");
+process.env.AWS_REGION = "us-east-1";
+process.env.ENV = "dev";
+const {search} = require("./search");
 
 const word = "amo"
 

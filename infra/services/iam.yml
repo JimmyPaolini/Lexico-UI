@@ -1,7 +1,7 @@
-SearchRole:
+Role:
   Type: AWS::IAM::Role
   Properties:
-    RoleName: lexico-search-${self:provider.stage}
+    RoleName: lexico-lambda-${self:provider.stage}
     Path: /
     ManagedPolicyArns:
       - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole

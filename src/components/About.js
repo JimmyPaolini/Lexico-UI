@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
+import Grow from '@material-ui/core/Grow';
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
@@ -34,74 +35,76 @@ export default function About() {
     const classes = useStyles();
     return (
         <Grid container justify="center" alignItems="center">
-        <Card className={classes.card}>
-            <Typography variant="h4" className={classes.body}>
-                About
-            </Typography>
-            <Divider className={classes.divider}/>
-            <Typography variant="body1" className={classes.body}>
-                I love reading and writing Latin, so I built Lexico to ease some of the more arduous aspects of it and help others enjoy Latin as I do. As with all things it is a work in progress, and so long as people  use it I’ll be striving to improve it.
-            </Typography>
-            <Divider className={classes.divider}/>
-            <Typography variant="subtitle1">
-                Gratias Maximas Ad:
-            </Typography>
-            <List dense>
-                {gratiasMaximasAd.map((text, i) => (
-                    <ListItem key={i} style={{padding: 0}}>
-                        <ListItemIcon>
-                            <FiberManualRecordIcon fontSize="small"/>
-                        </ListItemIcon>
-                        <ListItemText>
-                            <Typography variant="body2" className={classes.bullet}>
-                                {text}
-                            </Typography>
-                        </ListItemText>
-                    </ListItem>
-                ))}
-            </List>
-            <Typography variant="subtitle1">
-                Upcoming Features:
-            </Typography>
-            <List dense className={classes.list}>
-                {upcomingFeatures.map((text, i) => (
-                    <ListItem key={i} style={{padding: 0}}>
-                        <ListItemIcon>
-                            <FiberManualRecordIcon fontSize="small"/>
-                        </ListItemIcon>
-                        <ListItemText>
-                            <Typography variant="body2" className={classes.bullet}>
-                                {text}
-                            </Typography>
-                        </ListItemText>
-                    </ListItem>
-                ))}
-            </List>
-            <Typography variant="subtitle1">
-                Data collection:
-            </Typography>
-            <List dense className={classes.list}>
-                {dataCollection.map((text, i) => (
-                    <ListItem key={i} style={{padding: 0}}>
-                        <ListItemIcon>
-                            <FiberManualRecordIcon fontSize="small"/>
-                        </ListItemIcon>
-                        <ListItemText>
-                            <Typography variant="body2" className={classes.bullet}>
-                                {text}
-                            </Typography>
-                        </ListItemText>
-                    </ListItem>
-                ))}
-            </List>
-            <Divider className={classes.divider}/>
-            <Box display="flex" justifyContent="center">
-                <Typography variant="h6">
-                    Omnia mūtantur, nihil īnterit
-                </Typography>
-            </Box>
-        </Card>
-                    </Grid>
+            <Grow in={true}>
+                <Card className={classes.card}>
+                    <Typography variant="h4" className={classes.body}>
+                        About
+                    </Typography>
+                    <Divider className={classes.divider}/>
+                    <Typography variant="body1" className={classes.body}>
+                        I love reading and writing Latin, so I built Lexico to ease some of the more arduous aspects of it and help others enjoy Latin as I do. As with all things it is a work in progress, and so long as people  use it I’ll be striving to improve it.
+                    </Typography>
+                    <Divider className={classes.divider}/>
+                    <Typography variant="subtitle1">
+                        Gratias Maximas Ad:
+                    </Typography>
+                    <List dense>
+                        {gratiasMaximasAd.map((text, i) => (
+                            <ListItem key={i} style={{padding: 0}}>
+                                <ListItemIcon>
+                                    <FiberManualRecordIcon fontSize="small"/>
+                                </ListItemIcon>
+                                <ListItemText>
+                                    <Typography variant="body2" className={classes.bullet}>
+                                        {text}
+                                    </Typography>
+                                </ListItemText>
+                            </ListItem>
+                        ))}
+                    </List>
+                    <Typography variant="subtitle1">
+                        Upcoming Features:
+                    </Typography>
+                    <List dense className={classes.list}>
+                        {upcomingFeatures.map((text, i) => (
+                            <ListItem key={i} style={{padding: 0}}>
+                                <ListItemIcon>
+                                    <FiberManualRecordIcon fontSize="small"/>
+                                </ListItemIcon>
+                                <ListItemText>
+                                    <Typography variant="body2" className={classes.bullet}>
+                                        {text}
+                                    </Typography>
+                                </ListItemText>
+                            </ListItem>
+                        ))}
+                    </List>
+                    <Typography variant="subtitle1">
+                        Data collection:
+                    </Typography>
+                    <List dense className={classes.list}>
+                        {dataCollection.map((text, i) => (
+                            <ListItem key={i} style={{padding: 0}}>
+                                <ListItemIcon>
+                                    <FiberManualRecordIcon fontSize="small"/>
+                                </ListItemIcon>
+                                <ListItemText>
+                                    <Typography variant="body2" className={classes.bullet}>
+                                        {text}
+                                    </Typography>
+                                </ListItemText>
+                            </ListItem>
+                        ))}
+                    </List>
+                    <Divider className={classes.divider}/>
+                    <Box display="flex" justifyContent="center">
+                        <Typography variant="h6">
+                            Omnia mūtantur, nihil īnterit
+                        </Typography>
+                    </Box>
+                </Card>
+            </Grow>
+        </Grid>
     );
 }
 

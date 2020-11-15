@@ -2,7 +2,14 @@
     "configurations": [
         {
             "name": "Search",
-            "program": "${workspaceFolder}/src/test/search.test.js",
+            "program": "${workspaceFolder}/src/lambda/search/search.test.js",
+            "request": "launch",
+            "skipFiles": ["<node_internals>/**"],
+            "type": "node"
+        },
+        {
+            "name": "Literature",
+            "program": "${workspaceFolder}/src/lambda/literature/literature.test.js",
             "request": "launch",
             "skipFiles": ["<node_internals>/**"],
             "type": "node"

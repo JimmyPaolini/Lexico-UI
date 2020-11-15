@@ -7,8 +7,9 @@ import SearchIcon from '@material-ui/icons/Search';
 import CircularProgress from "@material-ui/core/CircularProgress";
 // import MicIcon from '@material-ui/icons/Mic';
 // import Typography from "@material-ui/core/Typography";
+import { pascalCase } from "../../globals";
 
-export default function SearchBar({search, handleSearchChange, handleSearch, loading}) {
+export default function SearchBar({search, handleSearchChange, handleSearchExecute, loading, target=""}) {
     const classes = useStyles();
     const input = useRef();
 
@@ -36,13 +37,13 @@ export default function SearchBar({search, handleSearchChange, handleSearch, loa
             <InputBase
                 id="searchBar"
                 className={classes.input}
-                placeholder="Search"
+                placeholder={"Search " + pascalCase(target)}
                 inputProps={{ 'aria-label': 'search', ref: input }}
                 value={search}
                 onChange={handleSearchChange}
-                onKeyDown={handleSearch}
+                onKeyDown={e => { if (e.keyCode === 13) handleSearchExecute(); }}
             />
-            <IconButton type="submit" className={classes.iconButton} aria-label="search">
+            <IconButton type="submit" onClick={() => handleSearchExecute()} className={classes.iconButton} aria-label="search">
                 {!loading ? <SearchIcon/> : <CircularProgress size={24} thickness={5.4} color="secondary" />}
             </IconButton>
             {/*<IconButton className={classes.iconButton} aria-label="miic">*/}
@@ -69,6 +70,6 @@ const useStyles = makeStyles((theme) => ({
         fontSize: 20
     },
     iconButton: {
-        padding: 10,
+        padding: theme.spacing(1),
     },
 }));

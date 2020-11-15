@@ -17,7 +17,7 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import InboxIcon from "@material-ui/icons/Inbox";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 
-export default [
+const pages = [
     {
         Name: "Search",
         name: "search",
@@ -74,4 +74,6 @@ export default [
         component: <About/>,
         keybind: ""
     }
-]
+];
+
+export default pages;

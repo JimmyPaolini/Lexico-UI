@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import {Context} from "../App";
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
 import Drawer from '@material-ui/core/Drawer';
@@ -17,7 +18,7 @@ import { Grid } from '@material-ui/core';
 
 export default function Navigation() {
     const classes = useStyles();
-    const [open, setOpen] = useState(false);
+    const {isNavOpen: open, setNavOpen: setOpen} = useContext(Context);
     const toggleDrawer = () => setOpen(!open);
 
     const pageName = window.location.pathname.match(/(?<=\/).*(?=\/)?/)[0];
@@ -81,15 +82,12 @@ const useStyles = makeStyles((theme) => ({
         }),
     },
     drawerClosed: {
-        width: theme.spacing(6),
+        width: theme.spacing(7),
         transition: theme.transitions.create('width', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
         overflowX: 'hidden',
-        [theme.breakpoints.up('sm')]: {
-            width: theme.spacing(7),
-        },
     },
     title: {
         position: "relative",

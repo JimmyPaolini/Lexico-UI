@@ -1,9 +1,12 @@
-cd src/lambda
-zip -qr ../../lambda.zip .
-cd ../..
+cd src/lambda/search
+zip -qr ../../../search.zip .
+cd ../literature
+zip -qr ../../../literature.zip .
+cd ../../..
 
 serverless deploy --verbose --stage $1
-rm lambda.zip
+rm search.zip
+rm literature.zip
 
-# npm run build
+# yarn build
 # aws s3 sync build s3://lexico-static-site-$1

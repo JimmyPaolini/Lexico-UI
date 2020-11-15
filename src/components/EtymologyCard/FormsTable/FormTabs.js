@@ -22,8 +22,8 @@ export default function FormTabs({activeTab, tabs, setActiveTab, children}) {
                 indicatorColor="secondary"
                 aria-label="conjugation tabs"
             >
-                {tabs.map(tab =>
-                    <Tab label={tab} style={{minWidth}} disabled={tab === "-"} aria-label={tab} />
+                {tabs.map((tab, i) =>
+                    <Tab label={tab} style={{minWidth}} disabled={tab === "-"} aria-label={tab} key={i}/>
                 )}
             </Tabs>
             {children}

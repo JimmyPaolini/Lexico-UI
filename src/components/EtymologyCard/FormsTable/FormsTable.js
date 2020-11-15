@@ -13,7 +13,7 @@ export default function FormsTable({forms}) {
                 const vertical = i % 2 ? "Right" : "Left";
                 const position = horizontal + vertical;
                 return (
-                    <Grid item xs={6}>
+                    <Grid item xs={6} key={i}>
                         <FormCell 
                             position={position}
                             center={form.center}

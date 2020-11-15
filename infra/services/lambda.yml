@@ -1,8 +1,15 @@
 Search:
   name: lexico-search-${self:provider.stage}
   handler: search.search
-  role: SearchRole
-  memorySize: 128
-  timeout: 16
+  package:
+    artifact: search.zip
   events:
-    - httpApi: GET /
+    - httpApi: GET /search
+
+Literature:
+  name: lexico-literature-${self:provider.stage}
+  handler: literature.literature
+  package:
+    artifact: literature.zip
+  events:
+    - httpApi: GET /literature

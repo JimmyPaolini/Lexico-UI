@@ -1,20 +1,19 @@
 import React, { useState, useEffect, useContext } from 'react';
-import {Context} from "../App";
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Drawer from '@material-ui/core/Drawer';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import Divider from '@material-ui/core/Divider';
-import Typography from '@material-ui/core/Typography';
-import { useHistory } from "react-router-dom";
+import { Context } from "../App";
 import pages from '../pages';
-import { Grid } from '@material-ui/core';
 
 export default function Navigation() {
     const classes = useStyles();
@@ -56,7 +55,8 @@ export default function Navigation() {
                 </ListItem>
                 <Divider />
                 {pages.map(page =>
-                    <ListItem button
+                    <ListItem 
+                        button
                         key={page.name}
                         component={Link}
                         to={"/" + page.name}

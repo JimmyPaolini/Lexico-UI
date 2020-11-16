@@ -4,12 +4,9 @@ const {literature} = require("./literature");
 
 async function main() {
     const event = {
-        queryStringParameters: {
-            author: "virgil",
-            work: "georgicon"
-        }
+        rawPath: '/literature/ovid'
     }
     const response = await literature(event);
-    console.log("Response:", response)
+    console.log("Response:", JSON.stringify(response, null, 2));
 }
-main()
+main();

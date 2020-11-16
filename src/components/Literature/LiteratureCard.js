@@ -1,27 +1,34 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import { sentenceCase, decimalToRoman } from "../../globals";
 
-export default function LiteratureCard({author, work}) {
+export default function LiteratureCard({name, object}) {
     const classes = useStyles();
-
+    const title = sentenceCase(name.replace(/\.txt/, '')).replace(/\d+/g, d => decimalToRoman(d));
+    
     return (
         <Card elevation={4} className={classes.literatureCard}>
-            <CardActionArea onClick={() => null}>
+            <CardActionArea>
                 <CardHeader
-                    title={work.title}
-                    subheader={author}
+                    title={title}
+                    subheader={sentenceCase(object.author || "")}
                     className={classes.literatureCardHeader}
+                    style={{paddingBottom: typeof object === "object" ? 0 : 16}}
                 />
-                <CardContent>
-                    <Typography variant="body2" component="p">
-                        {work.subworks.map(subwork => subwork.title).join(" - ")}
-                    </Typography>
-                </CardContent>
+                {typeof object === "object" &&
+                    <CardContent>
+                        <Typography variant="body2" component="p" align="center">
+                            {object.children.map(child => 
+                                sentenceCase(child.replace(/\.txt/, '')).replace(/\d+/g, d => decimalToRoman(d))
+                            ).join(" • ")}
+                        </Typography>
+                    </CardContent>
+                }
             </CardActionArea>
         </Card>
     )

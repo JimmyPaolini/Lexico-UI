@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import { searchLexico } from "../../globals";
 import SearchBar from "./SearchBar";
 import SearchResults from "./SearchResults";
 import Typography from "@material-ui/core/Typography";
@@ -28,7 +27,7 @@ export default function Search() {
         setResults(null);
         if (!search) return;
         setLoading(true);
-        searchLexico(search, {signal: clearSignal()}).then(results => {
+        searchDictionary(search, {signal: clearSignal()}).then(results => {
             setResults(results);
         }).catch(error => {
             setResults("not found");
@@ -50,6 +49,10 @@ export default function Search() {
             </Grid>
         </Grid>
     );
+}
+
+async function searchDictionary(search, args) {
+    return await fetch("https://i9ic4m487l.execute-api.us-east-1.amazonaws.com/search?search=" + search, args).then(r => r.json());
 }
 
 const useStyles = makeStyles((theme) => ({

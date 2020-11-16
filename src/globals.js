@@ -15,6 +15,10 @@ export function pascalCase(str) {
     return str.replace(/(\w)(\w*)/g, (_, g1, g2) => g1.toUpperCase() + g2.toLowerCase());
 }
 
+export function sentenceCase(str) {
+    return str.replace(/(\w)(\w*)/g, (_, g1, g2) => g1.toUpperCase() + g2.toLowerCase() + " ");
+}
+
 export function romanToDecimal(roman)  {
     let decimal = 0;
     const value = c => ({
@@ -37,32 +41,30 @@ export function romanToDecimal(roman)  {
 
 export function decimalToRoman(decimal)  {
     let roman = "";
-    const digits = decimal.toString().split().map(digit => parseInt(digit))
-    const [ones, tens, hundreds, thousands] = [digits.pop(), digits.pop(), digits.pop(), digits.pop()];
-    
-    const value = [
-        {
-            low: "I",
-            mid: "V",
-            top: "X",
-        },
-        {
-            low: "X",
-            mid: "L",
-            top: "C",
-        },
-        {
-            low: "C",
-            mid: "D",
-            top: "M",
-        },
-        {
-            low: "M",
-        },
-    ];
 
-    const val = [
-        
-    ]
-    
+    const thousands = Math.floor(decimal / 1000);
+    if (thousands >= 4) throw new Error("Decimal number too large (>3999) for roman numerals");
+    roman += new Array(thousands).fill("M").join("");
+
+    const hundreds = Math.floor(decimal / 100);
+    convertDigit(hundreds, "C", "D", "M");
+
+    const tens = Math.floor(decimal / 10);
+    convertDigit(tens, "X", "L", "C");
+
+    const ones = decimal % 10;
+    convertDigit(ones, "I", "V", "X");
+
+    return roman;
+
+    function convertDigit(digit, low, mid, top) {
+        if (digit < 4) roman += new Array(digit).fill(low).join("");
+        else if (digit === 4) roman += low + mid;
+        else if (digit < 9) roman += mid + new Array(digit - 5).fill(low).join("");
+        else if (digit === 9) roman += low + top;
+    }
+}
+
+export function romanNumeralize(str) {
+    return str.replace(/\d+/g, d => decimalToRoman(d));
 }

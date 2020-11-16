@@ -9,25 +9,26 @@ import {getBookmarks} from "./BookmarksController";
 import {getId, normalize} from "../../globals";
 
 export default function BookmarksResults({searched, setLoading}) {
-    // console.log("Rerendering Bookmarks");
     const classes = useStyles();
 
     const [bookmarks, setBookmarks] = useState([]);
 
     useEffect(() => {
+        setLoading(true);
         const bookmarks = Object.values(getBookmarks()).sort((a, b) => getId(a).localeCompare(getId(b)));
         setBookmarks(bookmarks.map((bookmark) => ({
             etymology: bookmark,
             Card: () => useMemo(() => <EtymologyCard etymology={bookmark} />, [])
         })));
+        setLoading(false);
     }, []);
 
     const [results, setResults] = useState([[]]);
-    setLoading(!!results[0].length);
 
     let numCols = 1;
     if (useMediaQuery(theme => theme.breakpoints.up('md'))) numCols = 2;
     if (useMediaQuery(theme => theme.breakpoints.up('lg'))) numCols = 3;
+    if (useMediaQuery(theme => theme.breakpoints.up('xl'))) numCols = 4;
 
     useEffect(() => {
         reorganizeBookmarks(bookmarks, numCols, setResults);

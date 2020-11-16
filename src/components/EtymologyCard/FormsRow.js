@@ -47,7 +47,7 @@ export default function FormsRow({searched, forms, partOfSpeech}) {
                 <Grid container item direction="column" justify="center" xs={true}>
                     <Typography variant="body1">{searched}</Typography>
                     {searchedForms.map(searchedForm => (
-                        <Typography variant="button" className={classes.searchedForm}>
+                        <Typography variant="button" className={classes.searchedForm} key={searchedForm}>
                             {searchedForm}
                         </Typography>
                     ))}
@@ -62,7 +62,7 @@ export default function FormsRow({searched, forms, partOfSpeech}) {
             </Grid>
         </CardContent>
         {FormsCard &&
-            <Collapse in={expanded && FormsCard}>
+            <Collapse in={expanded && !!FormsCard}>
                 <Divider variant="inset"/>
                 <FormsCard forms={forms}/>
             </Collapse>

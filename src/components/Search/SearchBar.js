@@ -44,7 +44,7 @@ export default function SearchBar({search, handleSearchChange, handleSearchExecu
                 onKeyDown={e => { if (e.keyCode === 13) handleSearchExecute(); }}
             />
             <IconButton type="submit" onClick={() => handleSearchExecute()} className={classes.iconButton} aria-label="search">
-                {!loading ? <SearchIcon/> : <CircularProgress size={24} thickness={5.4} color="secondary" />}
+                {!loading ? <SearchIcon/> : <CircularProgress size={24} thickness={5.4} color="secondary"/>}
             </IconButton>
             {/*<IconButton className={classes.iconButton} aria-label="miic">*/}
             {/*    <MicIcon />*/}

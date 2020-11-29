@@ -5,10 +5,9 @@ import clsx from 'clsx';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Navigation from "./components/Navigation";
-import logo from './logo.png';
+import logo from "./logo.png";
 import pages from "./pages";
 
 export const Context = createContext(null);
@@ -17,10 +16,11 @@ export default function App() {
     const classes = useStyles();
     const [isNavOpen, setNavOpen] = useState(false);
     const Logo = useMemo(() => () => <img src={logo} height={500} alt="Logo" />, []);
+    const context = {isNavOpen, setNavOpen, Logo};
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Context.Provider value={{isNavOpen, setNavOpen, Logo}}>
+            <Context.Provider value={context}>
                 <Router>
                     <Box className={clsx(classes.nav, {
                         [classes.navOpen]: isNavOpen,
@@ -54,30 +54,38 @@ function Content() {
 const useStyles = makeStyles((theme) => ({
     content: {
         height: "100%",
+        width: "100%",
         position: "absolute",
         right: 0,
     },
     nav: {
         height: "100%",
+        width: 0,
         position: "absolute",
         left: 0,
     },
     contentFull: {
-        width: `calc(100% - ${theme.spacing(7)}px)`,
+        [theme.breakpoints.up('sm')]: {
+            width: `calc(100% - ${theme.spacing(7)}px)`,
+        },
         transition: theme.transitions.create('width', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
     },
     contentSquished: {
-        width: `calc(100% - ${theme.spacing(24)}px)`,
+        [theme.breakpoints.up('sm')]: {
+            width: `calc(100% - ${theme.spacing(24)}px)`,
+        },
         transition: theme.transitions.create('width', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.enteringScreen,
         }),
     },
     navClosed: {
-        width: theme.spacing(6),
+        [theme.breakpoints.up('sm')]: {
+            width: theme.spacing(6),
+        },
         transition: theme.transitions.create('width', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,

@@ -42,7 +42,7 @@ export default function About() {
                     </Typography>
                     <Divider className={classes.divider}/>
                     <Typography variant="body1" className={classes.body}>
-                        I love reading and writing Latin, so I built Lexico to ease some of the more arduous aspects of it and help others enjoy Latin as I do. As with all things it is a work in progress, and so long as people  use it I’ll be striving to improve it.
+                        I love reading and writing Latin, so I built Lexico to help others enjoy Latin and ease some of the more tedious aspects of translation. As with all things it is a work ever in progress, and so long as people use it I’ll be striving to improve it.
                     </Typography>
                     <Divider className={classes.divider}/>
                     <Typography variant="subtitle1">
@@ -111,8 +111,8 @@ export default function About() {
 const useStyles = makeStyles((theme) => ({
     card: {
         padding: theme.spacing(1),
-        marginTop: theme.spacing(2),
-        width: "42%"
+        margin: theme.spacing(2),
+        maxWidth: theme.custom.cardWidth * 2
     },
     body: {
         padding: theme.spacing(1),

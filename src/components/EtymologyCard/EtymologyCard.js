@@ -13,7 +13,6 @@ export default function EtymologyCard({etymology, searched=""}) {
             <PrincipalPartsRow etymology={etymology}/>
             <Divider variant="inset"/>
             <TranslationsRow translations={etymology.translations}/>
-            <Divider variant="inset"/>
             <FormsRow partOfSpeech={etymology.partOfSpeech} forms={etymology.forms} searched={searched}/>
         </Card>
     )

@@ -1,6 +1,13 @@
 {
     "configurations": [
         {
+            "name": "Scripts",
+            "program": "${workspaceFolder}/src/test/scripts.js",
+            "request": "launch",
+            "skipFiles": ["<node_internals>/**"],
+            "type": "node"
+        },
+        {
             "name": "Search",
             "program": "${workspaceFolder}/src/lambda/search/search.test.js",
             "request": "launch",

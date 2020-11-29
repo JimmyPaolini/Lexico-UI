@@ -1,80 +1,134 @@
-import React, { useState, useEffect } from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import CardContent from '@material-ui/core/CardContent';
+import React, { useState } from 'react';
+import useEventListener from "../../useEventListener";
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Collapse from '@material-ui/core/Collapse';
-import IconButton from "@material-ui/core/IconButton";
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowUp';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MuiAccordion from '@material-ui/core/Accordion';
+import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
+import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 
 export default function TranslationsRow({translations}) {
+    translations = translations.filter(translation => !!translation);
     const classes = useStyles();
     const [expanded, setExpanded] = useState(false);
     const expandable = translations.length > 2;
-    const toggleExpanded = () => {
-        setExpanded(expanded => !expanded);
-    }
 
-    useEffect(() => {
-        if (!window.location.pathname.match(/^\/search/)) return;
-        const toggleExpandedKeybind = e => {
-            if (e.key === "t" && document.activeElement.tagName !== "INPUT") toggleExpanded();
-        }
-        window.addEventListener("keypress", toggleExpandedKeybind);
-        return () => window.removeEventListener("keypress", toggleExpandedKeybind);
+    useEventListener('keypress', (e) => {
+        if (window.location.pathname.match(/^\/bookmarks/)) return;
+        if (e.key === "t" && document.activeElement.tagName !== "INPUT") setExpanded(!expanded);
     });
 
     const Translation = CreateTranslation(classes);
 
     return (
-        <CardContent className={classes.translationsRow}>
-            <Grid container direction="row" justify="space-evenly">
-                <Grid container item direction="column" xs={expandable}>
-                    {translations.slice(0, 2).map((translation, i) => Translation(translation, i))}
-                    <Collapse in={expanded || !expandable} timeout={300}>
-                        {translations.slice(2).map((translation, i) => Translation(translation, i))}
-                    </Collapse>
+        <Accordion 
+            expanded={expandable && expanded} 
+            onClick={() => setExpanded(!expanded)} 
+            {...(!expandable ? {style: {cursor: "default"}} : {})}
+            className={classes.accordion}
+            elevation={0} square>
+            <AccordionSummary expandIcon={expandable ? <ExpandMoreIcon /> : undefined} className={classes.accordionSummary}>
+                <Grid container direction="column" justfy="center">
+                    {translations.slice(0, 2).map((translation) => Translation(translation))}
                 </Grid>
-                {expandable && 
-                    <Grid item>
-                        <IconButton onClick={toggleExpanded} disableRipple aria-label="expand translations">
-                            <KeyboardArrowDownIcon className={expanded ? classes.upSideDown : classes.rightSideUp}/>
-                        </IconButton>
-                    </Grid>
-                }
-            </Grid>
-        </CardContent>
-    )
+            </AccordionSummary>
+            {expandable && <AccordionDetails className={classes.accordionDetails}>
+                <Grid container direction="column" justfy="center">
+                    {translations.slice(2).map((translation) => Translation(translation))}
+                </Grid>
+            </AccordionDetails>}
+        </Accordion>
+    );
 }
 
-const CreateTranslation = classes => (translation, i) => (
-    <Grid container item spacing={1} wrap="nowrap" key={i}>
+const CreateTranslation = classes => (translation) => (
+    <Grid container item spacing={1} wrap="nowrap" key={translation}>
         <Grid item>
-            <FiberManualRecordIcon fontSize="small" className={classes.bullet}/>
+            <FiberManualRecordIcon className={classes.bullet}/>
         </Grid>
         <Grid item>
-            <Typography>{translation}</Typography>
+            <Typography color="textPrimary">{translation}</Typography>
         </Grid>
     </Grid>
 );
 
-const useStyles = makeStyles(theme => ({
-    translationsRow: {
-        paddingTop: theme.spacing(1),
-        paddingBottom: theme.spacing(1),
-        paddingRight: theme.spacing(1),
+const Accordion = withStyles((theme) => ({
+    root: {
+        '&:before': {
+            display: 'none',
+            color: theme.palette.primary.contrastText,
+        },
     },
+    expanded: {
+        '&$expanded': {
+            marginTop: theme.spacing(1),
+            marginBottom: theme.spacing(1),
+        },
+    },
+    // disabled: {
+    //     color: theme.palette.primary.contrastText,
+    //     '&$disabled': {
+    //         backgroundColor: theme.palette.grey[800],
+    //         color: theme.palette.primary.contrastText,
+    //         opacity: 1
+    //     },
+    // },
+  }))(MuiAccordion);
+  
+const AccordionSummary = withStyles((theme) => ({
+    root: {
+        minHeight: 0,
+        '&$expanded': {
+            minHeight: 0,
+            maxHeight: "none",
+        },
+    },
+    content: {
+        margin: 0,
+        '&$expanded': {
+            margin: 0
+        },
+    },
+    expanded: {
+        '&$expanded': {
+            maxHeight: "none",
+        },
+    },
+    disabled: {
+        '&$disabled': {
+            backgroundColor: "inherit",
+        },
+    },
+}))(MuiAccordionSummary);
+
+const AccordionDetails = withStyles((theme) => ({
+}))(MuiAccordionDetails);
+
+const useStyles = makeStyles((theme) => ({
     bullet: {
         position: "relative",
-        top: 2,
+        top: 4,
+        fontSize: 12,
+        color: theme.palette.text.primary,
     },
-    rightSideUp: {
-        transition: "300ms ease",
-        transform: "rotateZ(0deg)"
+    accordion: {
+        paddingTop: 0,
+        paddingBottom: 0,
+        marginTop: theme.spacing(1),
+        marginBottom: theme.spacing(1),
     },
-    upSideDown: {
-        transition: "300ms ease",
-        transform: "rotateZ(-180deg)"
+    accordionSummary: {
+        marginTop: 0,
+        marginBottom: 0,
+        paddingTop: 0,
+        paddingBottom: 0,
+    },
+    accordionDetails: {
+        marginTop: 0,
+        marginBottom: 0,
+        paddingTop: 0,
+        paddingBottom: 0,
     },
 }));

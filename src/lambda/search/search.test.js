@@ -2,15 +2,14 @@ process.env.AWS_REGION = "us-east-1";
 process.env.ENV = "dev";
 const {search} = require("./search");
 
-const word = "amo"
-
 async function main() {
     const event = {
+        rawPath: "/english",
         queryStringParameters: {
-            search: word
+            search: "water"
         }
     }
     const response = await search(event);
-    console.log("Response:", response)
+    console.log("Response:", JSON.stringify(response, null, 2))
 }
 main()

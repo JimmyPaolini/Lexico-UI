@@ -4,7 +4,7 @@ const {literature} = require("./literature");
 
 async function main() {
     const event = {
-        rawPath: '/literature/ovid'
+        rawPath: '/literature/ovid/metamorphoses/book 7.txt'
     }
     const response = await literature(event);
     console.log("Response:", JSON.stringify(response, null, 2));

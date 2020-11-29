@@ -17,6 +17,7 @@ export default function FormTabs({activeTab, tabs, setActiveTab, children}) {
             <Tabs
                 value={activeTab}
                 onChange={changeActiveTab}
+                onClick={e => e.stopPropagation()}
                 className={classes.tabs}
                 textColor="secondary"
                 indicatorColor="secondary"

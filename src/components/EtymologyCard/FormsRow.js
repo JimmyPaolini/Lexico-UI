@@ -1,36 +1,66 @@
-import React, { useState, useEffect } from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import CardContent from '@material-ui/core/CardContent';
+import React, { useState } from 'react';
+import useEventListener from "../../useEventListener";
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import Typography from "@material-ui/core/Typography";
-import IconButton from '@material-ui/core/IconButton';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowUp';
-import Collapse from '@material-ui/core/Collapse';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import VerbForms from "./PartsOfSpeech/VerbForms";
 import NounForms from "./PartsOfSpeech/NounForms";
 import AdjectiveForms from "./PartsOfSpeech/AdjectiveForms";
+import MuiAccordion from '@material-ui/core/Accordion';
+import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
+import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
+
+const Accordion = withStyles((theme) => ({
+    root: {
+        '&:before': {
+            display: 'none',
+        },
+        '&$expanded': {
+            margin: 'auto',
+        },
+    },
+    disabled: {
+        '&$disabled': {
+            backgroundColor: theme.palette.grey[800],
+            textColor: theme.palette.text.primary,
+        },
+    },
+    expanded: {},
+}))(MuiAccordion);
+
+const AccordionSummary = withStyles((theme) => ({
+  content: {
+    '&$expanded': {
+      margin: '12px 0',
+    },
+  },
+  expanded: {},
+}))(MuiAccordionSummary);
+
+const AccordionDetails = withStyles((theme) => ({
+    root: {
+        padding: 0
+    }
+}))(MuiAccordionDetails);
+
 const formNameAbbreviations = require("../../formAbbreviations.json");
 
 export default function FormsRow({searched, forms, partOfSpeech}) {
     const classes = useStyles();
     const [expanded, setExpanded] = useState(false);
-    const toggleExpanded = () => setExpanded(!expanded);
     let searchedForms = [];
     try {
         searchedForms = getSearchedForms(searched, forms, [], searchedForms);
     } catch(e) {}
 
-    useEffect(() => {
-        if (!window.location.pathname.match(/^\/search/)) return;
-        const toggleExpandedKeybind = e => {
-            if (e.key === "f" && document.activeElement.tagName !== "INPUT") toggleExpanded();
-        }
-        window.addEventListener("keypress", toggleExpandedKeybind);
-        return () => window.removeEventListener("keypress", toggleExpandedKeybind);
+    useEventListener('keypress', (e) => {
+        if (window.location.pathname.match(/^\/bookmarks/)) return;
+        if (e.key === "f" && document.activeElement.tagName !== "INPUT") setExpanded(!expanded);
     });
 
-    if (!searched) searched = partOfSpeech === "verb" ? "Conjugation" : "Declension";
+    if (!searched) searched = partOfSpeech === "verb" ? "Conjugation Table" : "Declension Table";
 
     const FormsCard = !forms ? null : {
         "verb": VerbForms,
@@ -41,32 +71,37 @@ export default function FormsRow({searched, forms, partOfSpeech}) {
         "pronoun": AdjectiveForms,
     }[partOfSpeech];
 
+    const expandable = !!FormsCard;
+
+    if (searched.match(/Table/i) && !expandable) return null;
+
     return (<>
-        <CardContent className={classes.formsRow}>
-            <Grid container direction="row" justify="space-evenly">
-                <Grid container item direction="column" justify="center" xs={true}>
-                    <Typography variant="body1">{searched}</Typography>
+        <Divider variant="inset"/>
+        <Accordion 
+            expanded={expanded} 
+            onClick={() => setExpanded(!expanded)} 
+            disabled={!expandable}
+            className={classes.accordion} 
+            elevation={0} square>
+            <AccordionSummary expandIcon={expandable ? <ExpandMoreIcon /> : undefined} className={classes.accordion}>
+                <Grid container direction="column" justfy="center">
+                    <Grid item>
+                        <Typography variant="body1">{searched}</Typography>
+                    </Grid>
                     {searchedForms.map(searchedForm => (
-                        <Typography variant="button" className={classes.searchedForm} key={searchedForm}>
-                            {searchedForm}
-                        </Typography>
+                        <Grid item>
+                            <Typography variant="button" className={classes.searchedForm} key={searchedForm}>
+                                {searchedForm}
+                            </Typography>
+                        </Grid>
                     ))}
                 </Grid>
-                {FormsCard &&
-                    <Grid item>
-                        <IconButton onClick={toggleExpanded} disableRipple aria-label="expand forms">
-                            <KeyboardArrowDownIcon className={expanded ? classes.upSideDown : classes.rightSideUp}/>
-                        </IconButton>
-                    </Grid>
-                }
-            </Grid>
-        </CardContent>
-        {FormsCard &&
-            <Collapse in={expanded && !!FormsCard}>
-                <Divider variant="inset"/>
+            </AccordionSummary>
+            {expandable && <AccordionDetails>
+                <Divider variant="inset" absolute/>
                 <FormsCard forms={forms}/>
-            </Collapse>
-        }
+            </AccordionDetails>}
+        </Accordion>
     </>);
 }
 
@@ -86,17 +121,7 @@ function getSearchedForms(searched, forms, currentForm, searchedForms) {
 }
 
 const useStyles = makeStyles(theme => ({
-    formsRow: {
-        paddingTop: theme.spacing(1),
-        paddingBottom: theme.spacing(1),
-        paddingRight: theme.spacing(1),
-    },
-    rightSideUp: {
-        transition: "250ms ease",
-        transform: "rotateZ(0deg)",
-    },
-    upSideDown: {
-        transition: "250ms ease",
-        transform: "rotateZ(-180deg)",
+    accordion: {
+        minHeight: 64,
     },
 }));

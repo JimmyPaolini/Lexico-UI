@@ -14,5 +14,8 @@ export default createMuiTheme({
     },
     typography: {
         fontFamily: "Helvetica Neue"
+    },
+    custom: {
+        cardWidth: 382
     }
 });

@@ -8,14 +8,17 @@ export function getId(etymology) {
 }
 
 export function normalize(str) {
+    if (!str) return "";
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g,"");
 }
 
 export function pascalCase(str) {
+    if (!str) return "";
     return str.replace(/(\w)(\w*)/g, (_, g1, g2) => g1.toUpperCase() + g2.toLowerCase());
 }
 
 export function sentenceCase(str) {
+    if (!str) return "";
     return str.replace(/(\w)(\w*)/g, (_, g1, g2) => g1.toUpperCase() + g2.toLowerCase() + " ");
 }
 
@@ -66,5 +69,6 @@ export function decimalToRoman(decimal)  {
 }
 
 export function romanNumeralize(str) {
+    if (!str) return "";
     return str.replace(/\d+/g, d => decimalToRoman(d));
 }

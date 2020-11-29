@@ -11,6 +11,23 @@ LiteratureBucket:
 StaticSiteBucket:
   Type:   AWS::S3::Bucket
   Properties:
-    BucketName: lexicoo-static-site-${self:provider.stage}
+    BucketName: lexico-static-site-${self:provider.stage}
+    AccessControl: PublicRead
     WebsiteConfiguration:
       IndexDocument: index.html
+      ErrorDocument: index.html
+
+PublicReadGetObjectPolicy:
+  Type: 'AWS::S3::BucketPolicy'
+  Properties:
+    Bucket:
+      Ref: StaticSiteBucket
+    PolicyDocument:
+      Statement:
+        - Sid: PublicReadGetObject
+          Effect: Allow
+          Principal: '*'
+          Action:
+            - "s3:GetObject"
+          Resource: 
+            - "arn:aws:s3:::lexico-static-site-${self:provider.stage}/*"

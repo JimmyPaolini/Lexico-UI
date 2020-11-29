@@ -88,7 +88,7 @@ const formsTemplate = [
 const width = 382;
 const useStyles = makeStyles(theme => ({
     paper: {
-        width: `${width}px`,
+        width,
         borderRadius: 0,
     }
 }));

@@ -1,16 +1,17 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable no-mixed-operators */
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import SearchBar from "./SearchBar";
-import SearchResults from "./SearchResults";
 import Typography from "@material-ui/core/Typography";
+import CardDeck from "../CardDeck";
 import Home from "./Home";
+import EtymologyCard from "../EtymologyCard/EtymologyCard";
+import {getId} from "../../globals";
 
 let controller = new AbortController();
 const clearSignal = () =>  {
-    controller.abort()
+    controller.abort();
     controller = new AbortController();
     return controller.signal;
 };
@@ -19,40 +20,47 @@ export default function Search() {
     const classes = useStyles();
 
     const [search, setSearch] = useState("");
-    const [results, setResults] = useState(null);
+    const [results, setResults] = useState(undefined);
     const [loading, setLoading] = useState(false);
-    const [searched, setSearched] = useState("");
+    const [isLatin, setLatin] = useState(true);
 
-    const handleSearchExecute = e => {
-        setResults(null);
+    const handleSearchChange = e => {
+        setSearch(e.target.value);
+        // if (!e.target.value) setResults(undefined);
+    }
+
+    const handleSearchExecute = () => {
         if (!search) return;
         setLoading(true);
-        searchDictionary(search, {signal: clearSignal()}).then(results => {
-            setResults(results);
+        searchDictionary(search, isLatin, {signal: clearSignal()}).then(response => {
+            setResults(response.map(etymology => ({
+                key: getId(etymology),
+                Card: () => useMemo(() => <EtymologyCard etymology={etymology} searched={isLatin ? search : null}/>, [])
+            })));
         }).catch(error => {
-            setResults("not found");
+            setResults(null);
         }).finally(() => {
             setLoading(false);
-            setSearched(search);
         });
     }
 
     return (
         <Grid container direction="column" alignItems="center">
             <Grid item>
-                <SearchBar search={search} handleSearchChange={e => setSearch(e.target.value)} handleSearchExecute={handleSearchExecute} loading={loading} target="lexico"/>
+                <SearchBar {...{search, loading, handleSearchChange, handleSearchExecute, isLatin, setLatin}} target="lexico"/>
             </Grid>
             <Grid item container justify="center">
-                {!results && <Home />}
-                {results === "not found" && <Typography variant="h4" color="textPrimary">Not found</Typography>}
-                <SearchResults results={results} searched={searched}/>
+                {results === undefined && <Home />}
+                {results === null && <Typography variant="h4">Not found</Typography>}
+                {results && <CardDeck cards={results} />}
             </Grid>
         </Grid>
     );
 }
 
-async function searchDictionary(search, args) {
-    return await fetch("https://i9ic4m487l.execute-api.us-east-1.amazonaws.com/search?search=" + search, args).then(r => r.json());
+async function searchDictionary(search, isLatin, args) {
+    const url = `https://i9ic4m487l.execute-api.us-east-1.amazonaws.com/${isLatin ? "latin" : "english"}?search=`;
+    return await fetch(url + search, args).then(r => r.json());
 }
 
 const useStyles = makeStyles((theme) => ({

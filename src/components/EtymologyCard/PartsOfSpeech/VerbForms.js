@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Box from "@material-ui/core/Box";
 import FormTabs from "../FormsTable/FormTabs";
 import FormsTable from "../FormsTable/FormsTable";
+import { MoodBad, MoodBadOutlined } from '@material-ui/icons';
 
 export default function VerbForms({forms}) {
     const classes = useStyles();
@@ -76,8 +77,9 @@ const verbFormsRestructure = conjugations => {
     toFormsTable(conjugations?.indicative?.passive?.perfect, structure.IND.PERF.PAS)
     toFormsTable(conjugations?.indicative?.active?.pluperfect, structure.IND.PLUP.ACT)
     toFormsTable(conjugations?.indicative?.passive?.pluperfect, structure.IND.PLUP.PAS)
-    toFormsTable(conjugations?.indicative?.active?.["future perfect"], structure.IND.FUTP.ACT)
-    toFormsTable(conjugations?.indicative?.passive?.["future perfect"], structure.IND.FUTP.PAS)
+    const futp = Object.keys(conjugations?.indicative?.active || {}).find(tense => tense.match(/future\sperfect/));
+    toFormsTable(conjugations?.indicative?.active?.[futp], structure.IND.FUTP.ACT)
+    toFormsTable(conjugations?.indicative?.passive?.[futp], structure.IND.FUTP.PAS)
 
     toFormsTable(conjugations?.subjunctive?.active?.present, structure.SUB.PRES.ACT)
     toFormsTable(conjugations?.subjunctive?.passive?.present, structure.SUB.PRES.PAS)
@@ -122,409 +124,70 @@ const verbFormsRestructure = conjugations => {
     return structure;
 }
 
+const verbSextet = [
+    {
+        topLeft: "1",
+        topRight: "SG",
+    },
+    {
+        topRight: "PL",
+    },
+    {
+        topLeft: "2",
+    },
+    {
+    },
+    {
+        topLeft: "3",
+    },
+    {
+    },
+];
+const jsonCopy = json => JSON.parse(JSON.stringify(json));
+
 const structureTemplate = {
     "IND": {
         "PRES": {
-            "ACT": [
-                {
-                    topLeft: "1",
-                    topRight: "SG",
-                },
-                {
-                    topRight: "PL",
-                },
-                {
-                    topLeft: "2",
-                },
-                {
-                },
-                {
-                    topLeft: "3",
-                },
-                {
-                },
-            ],
-            "PAS": [
-                {
-                    topLeft: "1",
-                    topRight: "SG",
-                },
-                {
-                    topRight: "PL",
-                },
-                {
-                    topLeft: "2",
-                },
-                {
-                },
-                {
-                    topLeft: "3",
-                },
-                {
-                },
-            ],
+            "ACT": jsonCopy(verbSextet),
+            "PAS": jsonCopy(verbSextet),
         },
         "IMP": {
-            "ACT": [
-                {
-                    topLeft: "1",
-                    topRight: "SG",
-                },
-                {
-                    topRight: "PL",
-                },
-                {
-                    topLeft: "2",
-                },
-                {
-                },
-                {
-                    topLeft: "3",
-                },
-                {
-                },
-            ],
-            "PAS": [
-                {
-                    topLeft: "1",
-                    topRight: "SG",
-                },
-                {
-                    topRight: "PL",
-                },
-                {
-                    topLeft: "2",
-                },
-                {
-                },
-                {
-                    topLeft: "3",
-                },
-                {
-                },
-            ],
+            "ACT": jsonCopy(verbSextet),
+            "PAS": jsonCopy(verbSextet),
         },
         "FUT": {
-            "ACT": [
-                {
-                    topLeft: "1",
-                    topRight: "SG",
-                },
-                {
-                    topRight: "PL",
-                },
-                {
-                    topLeft: "2",
-                },
-                {
-                },
-                {
-                    topLeft: "3",
-                },
-                {
-                },
-            ],
-            "PAS": [
-                {
-                    topLeft: "1",
-                    topRight: "SG",
-                },
-                {
-                    topRight: "PL",
-                },
-                {
-                    topLeft: "2",
-                },
-                {
-                },
-                {
-                    topLeft: "3",
-                },
-                {
-                },
-            ],
+            "ACT": jsonCopy(verbSextet),
+            "PAS": jsonCopy(verbSextet),
         },
         "PERF": {
-            "ACT": [
-                {
-                    topLeft: "1",
-                    topRight: "SG",
-                },
-                {
-                    topRight: "PL",
-                },
-                {
-                    topLeft: "2",
-                },
-                {
-                },
-                {
-                    topLeft: "3",
-                },
-                {
-                },
-            ],
-            "PAS": [
-                {
-                    topLeft: "1",
-                    topRight: "SG",
-                },
-                {
-                    topRight: "PL",
-                },
-                {
-                    topLeft: "2",
-                },
-                {
-                },
-                {
-                    topLeft: "3",
-                },
-                {
-                },
-            ],
+            "ACT": jsonCopy(verbSextet),
+            "PAS": jsonCopy(verbSextet),
         },
         "PLUP": {
-            "ACT": [
-                {
-                    topLeft: "1",
-                    topRight: "SG",
-                },
-                {
-                    topRight: "PL",
-                },
-                {
-                    topLeft: "2",
-                },
-                {
-                },
-                {
-                    topLeft: "3",
-                },
-                {
-                },
-            ],
-            "PAS": [
-                {
-                    topLeft: "1",
-                    topRight: "SG",
-                },
-                {
-                    topRight: "PL",
-                },
-                {
-                    topLeft: "2",
-                },
-                {
-                },
-                {
-                    topLeft: "3",
-                },
-                {
-                },
-            ],
+            "ACT": jsonCopy(verbSextet),
+            "PAS": jsonCopy(verbSextet),
         },
         "FUTP": {
-            "ACT": [
-                {
-                    topLeft: "1",
-                    topRight: "SG",
-                },
-                {
-                    topRight: "PL",
-                },
-                {
-                    topLeft: "2",
-                },
-                {
-                },
-                {
-                    topLeft: "3",
-                },
-                {
-                },
-            ],
-            "PAS": [
-                {
-                    topLeft: "1",
-                    topRight: "SG",
-                },
-                {
-                    topRight: "PL",
-                },
-                {
-                    topLeft: "2",
-                },
-                {
-                },
-                {
-                    topLeft: "3",
-                },
-                {
-                },
-            ],
+            "ACT": jsonCopy(verbSextet),
+            "PAS": jsonCopy(verbSextet),
         },
     },
     "SUB": {
         "PRES": {
-            "ACT": [
-                {
-                    topLeft: "1",
-                    topRight: "SG",
-                },
-                {
-                    topRight: "PL",
-                },
-                {
-                    topLeft: "2",
-                },
-                {
-                },
-                {
-                    topLeft: "3",
-                },
-                {
-                },
-            ],
-            "PAS": [
-                {
-                    topLeft: "1",
-                    topRight: "SG",
-                },
-                {
-                    topRight: "PL",
-                },
-                {
-                    topLeft: "2",
-                },
-                {
-                },
-                {
-                    topLeft: "3",
-                },
-                {
-                },
-            ],
+            "ACT": jsonCopy(verbSextet),
+            "PAS": jsonCopy(verbSextet),
         },
         "IMP": {
-            "ACT": [
-                {
-                    topLeft: "1",
-                    topRight: "SG",
-                },
-                {
-                    topRight: "PL",
-                },
-                {
-                    topLeft: "2",
-                },
-                {
-                },
-                {
-                    topLeft: "3",
-                },
-                {
-                },
-            ],
-            "PAS": [
-                {
-                    topLeft: "1",
-                    topRight: "SG",
-                },
-                {
-                    topRight: "PL",
-                },
-                {
-                    topLeft: "2",
-                },
-                {
-                },
-                {
-                    topLeft: "3",
-                },
-                {
-                },
-            ],
+            "ACT": jsonCopy(verbSextet),
+            "PAS": jsonCopy(verbSextet),
         },
         "PERF": {
-            "ACT": [
-                {
-                    topLeft: "1",
-                    topRight: "SG",
-                },
-                {
-                    topRight: "PL",
-                },
-                {
-                    topLeft: "2",
-                },
-                {
-                },
-                {
-                    topLeft: "3",
-                },
-                {
-                },
-            ],
-            "PAS": [
-                {
-                    topLeft: "1",
-                    topRight: "SG",
-                },
-                {
-                    topRight: "PL",
-                },
-                {
-                    topLeft: "2",
-                },
-                {
-                },
-                {
-                    topLeft: "3",
-                },
-                {
-                },
-            ],
+            "ACT": jsonCopy(verbSextet),
+            "PAS": jsonCopy(verbSextet),
         },
         "PLUP": {
-            "ACT": [
-                {
-                    topLeft: "1",
-                    topRight: "SG",
-                },
-                {
-                    topRight: "PL",
-                },
-                {
-                    topLeft: "2",
-                },
-                {
-                },
-                {
-                    topLeft: "3",
-                },
-                {
-                },
-            ],
-            "PAS": [
-                {
-                    topLeft: "1",
-                    topRight: "SG",
-                },
-                {
-                    topRight: "PL",
-                },
-                {
-                    topLeft: "2",
-                },
-                {
-                },
-                {
-                    topLeft: "3",
-                },
-                {
-                },
-            ],
+            "ACT": jsonCopy(verbSextet),
+            "PAS": jsonCopy(verbSextet),
         },
     },
     "IMP": {
@@ -664,10 +327,9 @@ const structureTemplate = {
     },
 }
 
-const width = 382;
 const useStyles = makeStyles(theme => ({
     paper: {
-        width: `${width}px`,
+        width: theme.custom.cardWidth,
         borderRadius: 0,
     }
 }));

@@ -8,5 +8,5 @@ serverless deploy --verbose --stage $1
 rm search.zip
 rm literature.zip
 
-# yarn build
-# aws s3 sync build s3://lexico-static-site-$1
+yarn build
+aws s3 sync build s3://lexico-static-site-$1

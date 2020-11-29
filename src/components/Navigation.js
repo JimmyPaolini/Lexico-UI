@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link, useHistory } from "react-router-dom";
-import Drawer from '@material-ui/core/Drawer';
+import useEventListener from "../useEventListener";
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
@@ -17,36 +19,43 @@ import pages from '../pages';
 
 export default function Navigation() {
     const classes = useStyles();
+    const history = useHistory();
+    const isMobile = useMediaQuery(theme => theme.breakpoints.down('sm'));
     const {isNavOpen: open, setNavOpen: setOpen} = useContext(Context);
-    const toggleDrawer = () => setOpen(!open);
-
-    const pageName = window.location.pathname.match(/(?<=\/).*(?=\/)?/)[0];
+    const pageName = window.location.pathname.split("/")[1];
     const [selected, setSelected] = useState(pageName || "search");
 
-    const history = useHistory();
-    useEffect(() => {
-        const navigationKeybind = e => {
-            if (document.activeElement.tagName === "INPUT") return;
-            const page = pages.find(page => page.keybind === e.key);
-            if (page) history.push("/" + page.name);
-            if (page) setSelected(page.name);
-        }
-        window.addEventListener("keypress", navigationKeybind);
-        return () => window.removeEventListener("keypress", navigationKeybind);
-    });
+    useEventListener("keypress", e => {
+        if (document.activeElement.tagName === "INPUT") return;
+        const page = pages.find(page => page.keybind === e.key);
+        if (page) history.push("/" + page.name);
+        if (page) setSelected(page.name);
+    })
+
+    const onSelect = (pageName) => {
+        setSelected(pageName);
+        if (isMobile) setOpen(!open);
+    }
 
     return (
-        <Drawer
-            variant="permanent"
+        <SwipeableDrawer
+            variant={isMobile ? "temporary" : "permanent"}
+            open={open}
+            onClose={() => setOpen(false)}
+            onOpen={() => null}
+            classes={{
+                paper: open 
+                    ? classes.drawerOpen 
+                    : classes.drawerClosed
+            }}
             // className={open ? classes.drawerOpen : classes.drawerClosed}
-            classes={{paper: open ? classes.drawerOpen : classes.drawerClosed}}
-        >
+            >
             <Grid item>
             <List>
                 <ListItem className={classes.header}>
                     <Typography variant="h4" className={classes.title}>Lexico</Typography>
                     <IconButton
-                        onClick={toggleDrawer}
+                        onClick={() => setOpen(!open)}
                         className={classes.expander}
                         aria-label="toggle navigation drawer"
                     >
@@ -61,7 +70,7 @@ export default function Navigation() {
                         component={Link}
                         to={"/" + page.name}
                         selected={selected === page.name}
-                        onClick={() => setSelected(page.name)}
+                        onClick={() => onSelect(page.name)}
                     >
                         <ListItemIcon>{page.icon}</ListItemIcon>
                         <ListItemText primary={page.Name} />
@@ -69,7 +78,7 @@ export default function Navigation() {
                 )}
             </List>
             </Grid>
-        </Drawer>
+        </SwipeableDrawer>
     );
 }
 
@@ -83,6 +92,9 @@ const useStyles = makeStyles((theme) => ({
     },
     drawerClosed: {
         width: theme.spacing(7),
+        [theme.breakpoints.down('sm')]: {
+            width: 0,
+        },
         transition: theme.transitions.create('width', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,

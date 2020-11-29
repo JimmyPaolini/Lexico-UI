@@ -97,8 +97,8 @@ export default function Suggestions() {
 const useStyles = makeStyles((theme) => ({
     card: {
         padding: theme.spacing(1),
-        marginTop: theme.spacing(2),
-        width: "42%"
+        margin: theme.spacing(2),
+        width: theme.custom.cardWidth * 2
     },
     textField: {
         marginBottom: theme.spacing(4),

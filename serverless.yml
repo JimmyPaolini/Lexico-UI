@@ -31,3 +31,4 @@ resources:
     DictionaryBucket: ${self:custom.s3.DictionaryBucket}
     LiteratureBucket: ${self:custom.s3.LiteratureBucket}
     StaticSiteBucket: ${self:custom.s3.StaticSiteBucket}
+    PublicReadGetObjectPolicy: ${self:custom.s3.PublicReadGetObjectPolicy}

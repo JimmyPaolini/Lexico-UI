@@ -1,102 +1,10 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useMemo, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LiteratureCard from "./LiteratureCard";
-import SearchBar from "../Search/SearchBar";
-import CardDeck from "../CardDeck";
-import literature from "../../literature";
+import React from 'react';
+import { useLocation } from 'react-router-dom'
+import LiteratureLibrary from "./LiteratureLibrary";
+import LiteratureReader from "./LiteratureReader";
 
 export default function Literature() {
-    const classes = useStyles();
-    const [results, setResults] = useState(literature.map(author => ({
-        key: author.title,
-        Card: () => useMemo(() => <LiteratureCard author={author} />, [])
-    })));
-    const [search, setSearch] = useState("");
-    const [searched, setSearched] = useState("");
-    const [loading, setLoading] = useState(false);
-    
-    // useEffect(() => {
-    //     searchLiterature(window.location.pathname).then(keys => {
-    //         const literatureOriginal = parseLiterature(keys);
-    //         console.log(JSON.stringify(literatureOriginal));
-    //         setLiteratureOriginal(literatureOriginal);
-    //         setLiterature(literatureOriginal.map(author => ({
-    //             key: author.title,
-    //             author,
-    //             Card: () => useMemo(() => <LiteratureCard author={author} />, [])
-    //         })));
-    //         setLoading(false);
-    //     });
-    // }, []);
-
-    useEffect(() => {
-        const filtered = !searched ? literature : filterLiterature(literature, searched);
-        setResults(filtered.map(author => ({
-            key: author.title,
-            Card: () => useMemo(() => <LiteratureCard author={author} />, [])
-        })));
-    }, [searched]);
-
-    const handleSearchChange = e => {
-        setSearch(e.target.value);
-        if (!e.target.value) setSearched(e.target.value);
-    }
-
-    return (
-        <Grid container direction="column" justify="flex-start" alignItems="center">
-            <Grid item>
-                <SearchBar 
-                    {...{search, loading, handleSearchChange}}
-                    handleSearchExecute={() => setSearched(search)} 
-                    target="literature"/>
-            </Grid>
-            <Grid item container justify="center">
-                {results && <CardDeck cards={results} />}
-            </Grid>
-        </Grid>
-    );
+    const location = useLocation();
+    if (location.pathname.match(/^\/literature$/)) return <LiteratureLibrary />;
+    else return <LiteratureReader />;
 }
-
-// async function searchLiterature(path) {
-//     const url = "https://i9ic4m487l.execute-api.us-east-1.amazonaws.com/literature/" + path.replace(/\/literature\/?/, "");
-//     const response = await fetch(url).then(r => r.json());
-//     return response;
-// }
-
-// function parseLiterature(keys) {
-//     const literature = [];
-//     for (const key of keys) {
-//         const titles = key.split("/");
-//         let current = literature.find(obj => obj.title === titles[0]);
-//         if (!current) {
-//             current = {title: titles[0], subtitle: titles[1], children: []}
-//             literature.push(current);
-//         }
-//         for (const title of titles.slice(2)) {
-//             let target = current.children.find(obj => obj.title === title);
-//             if (!target) {
-//                 if (title.match(/.*\.txt/)) target = {title};
-//                 else target = {title, children: []};
-//                 current.children.push(target);
-//             }
-//             current = target;
-//         }
-//     }
-//     return literature;
-// }
-
-function filterLiterature(literature, searched) {
-    const re = new RegExp(searched, "i");
-    return literature.filter(item => filterItem(item));
-
-    function filterItem(item) {
-        if (item.title.match(re) || (item.subtitle && item.subtitle.match(re))) return true;
-        return item.children && item.children.filter(child => filterItem(child)).length;
-    }
-}
-
-const useStyles = makeStyles((theme) => ({
-}));

@@ -1,5 +1,5 @@
 import React from 'react';
-import LiteratureCardTest from '../../components/Literature/LiteratureCard';
+import LiteratureCardTest from '../../components/Literature/LiteratureCardRoot';
 import {muiTheme} from 'storybook-addon-material-ui';
 import theme from '../../theme';
 

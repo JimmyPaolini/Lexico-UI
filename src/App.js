@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Box from '@material-ui/core/Box';
 import Navigation from "./components/Navigation";
+import LiteratureReader from "./components/Literature/LiteratureReader";
 import logo from "./logo.png";
 import pages from "./pages";
 
@@ -47,6 +48,7 @@ function Content() {
             {pages.map((page, i) =>
                 <Route path={"/" + page.name} key={i+1}>{page.component}</Route>
             )}
+            <Route exact path="/literature/:key" render={props => <LiteratureReader {...props} />} />
         </Switch>
     );
 }

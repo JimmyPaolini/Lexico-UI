@@ -26,10 +26,12 @@ export default function TranslationsRow({translations}) {
         <Accordion 
             expanded={expandable && expanded} 
             onClick={() => setExpanded(!expanded)} 
-            {...(!expandable ? {style: {cursor: "default"}} : {})}
             className={classes.accordion}
             elevation={0} square>
-            <AccordionSummary expandIcon={expandable ? <ExpandMoreIcon /> : undefined} className={classes.accordionSummary}>
+            <AccordionSummary 
+                expandIcon={expandable ? <ExpandMoreIcon /> : undefined} 
+                {...(!expandable ? {style: {cursor: "default"}} : {})}
+                className={classes.accordionSummary}>
                 <Grid container direction="column" justfy="center">
                     {translations.slice(0, 2).map((translation) => Translation(translation))}
                 </Grid>

@@ -159,10 +159,9 @@ const structureTemplate = {
     ]
 }
 
-const width = 382;
 const useStyles = makeStyles(theme => ({
     paper: {
-        width: `${width}px`,
+        width: theme.custom.cardWidth,
         borderRadius: 0,
     }
 }));

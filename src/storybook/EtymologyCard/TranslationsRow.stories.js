@@ -8,7 +8,7 @@ import fero from "../../test/data/fero.json"
 export default {
     title: 'TranslationsRow',
     component: TranslationsRow,
-    decorators: [muiTheme([theme]), (Story) => <div style={{width: `${382}px`}}><Story/></div>]
+    decorators: [muiTheme([theme]), (Story) => <div style={{width: theme.custom.cardWidth}}><Story/></div>]
 };
 
 const Template = (args) => <TranslationsRow {...args} />;

@@ -1,7 +1,1 @@
-{
-    "window.title": "${rootName}",
-    "files.watcherExclude": {
-        "**/node_modules/**": false
-    },
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-}
+{}

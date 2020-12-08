@@ -85,10 +85,9 @@ const formsTemplate = [
     },
 ]
 
-const width = 382;
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     paper: {
-        width,
+        width: theme.custom.cardWidth,
         borderRadius: 0,
     }
 }));

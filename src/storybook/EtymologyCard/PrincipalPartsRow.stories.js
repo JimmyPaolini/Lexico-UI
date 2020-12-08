@@ -7,7 +7,7 @@ import fero from "../../test/data/fero.json"
 export default {
     title: 'PrincipalPartsRow',
     component: PrincipalPartsRow,
-    decorators: [muiTheme([theme]), (Story) => <div style={{width: `${382}px`}}><Story/></div>]
+    decorators: [muiTheme([theme]), (Story) => <div style={{width: theme.custom.cardWidth}}><Story/></div>]
 };
 
 const Template = (args) => <PrincipalPartsRow {...args} />;

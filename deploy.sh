@@ -10,3 +10,4 @@ rm literature.zip
 
 yarn build
 aws s3 sync build s3://lexico-static-site-$1
+rm -r build

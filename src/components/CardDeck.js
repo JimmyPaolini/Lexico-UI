@@ -5,7 +5,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Grid from '@material-ui/core/Grid';
 import Grow from '@material-ui/core/Grow';
 
-export default function CardDeck({cards}) {
+export default function CardDeck({ cards }) {
     const classes = useStyles();
 
     let numCols = 1;
@@ -23,14 +23,14 @@ export default function CardDeck({cards}) {
         console.error("Invalid card structure passed into CardDeck");
         return null;
     }
-    if (!columns[0].length) return null;
+    if (!columns.length || !columns[0].length) return null;
     return columns.map((column, col) => {
         if (!column.length) return null;
         const key = column.map(card => card.key).join("");
         return <Grid item container direction="column" alignItems="center" spacing={4} className={classes.column} key={key}>
             {column.map((card, row) => {
-                const timeout = 400 * Math.pow(col + row, 1/2);
-                return <Grow in key={card.key} {...(row || col ? {timeout} : {})}>
+                const timeout = 400 * Math.pow(col + row, 1 / 2);
+                return <Grow in key={card.key} {...(row || col ? { timeout } : {})}>
                     <Grid item>
                         <card.Card />
                     </Grid>
@@ -47,6 +47,6 @@ function reorganizeCards(cards, numCols, setColumns) {
 
 const useStyles = makeStyles((theme) => ({
     column: {
-        width: 382 + 2 * theme.spacing(4)
+        width: theme.custom.cardWidth + 2 * theme.spacing(4)
     }
 }));

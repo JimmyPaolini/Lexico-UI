@@ -1,4 +1,4 @@
-import {getId} from "../../globals";
+import { getId } from "../../globals";
 
 if (!window.localStorage.bookmarks) window.localStorage.bookmarks = JSON.stringify({});
 

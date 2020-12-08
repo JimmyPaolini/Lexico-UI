@@ -4,7 +4,7 @@ import theme from './theme';
 import clsx from 'clsx';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Box from '@material-ui/core/Box';
 import Navigation from "./components/Navigation";
 import LiteratureReader from "./components/Literature/LiteratureReader";
@@ -17,7 +17,7 @@ export default function App() {
     const classes = useStyles();
     const [isNavOpen, setNavOpen] = useState(false);
     const Logo = useMemo(() => () => <img src={logo} height={500} alt="Logo" />, []);
-    const context = {isNavOpen, setNavOpen, Logo};
+    const context = { isNavOpen, setNavOpen, Logo };
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
@@ -46,7 +46,7 @@ function Content() {
         <Switch>
             <Route exact path="/" key={0}>{pages[0].component}</Route>
             {pages.map((page, i) =>
-                <Route path={"/" + page.name} key={i+1}>{page.component}</Route>
+                <Route path={"/" + page.name} key={i + 1}>{page.component}</Route>
             )}
             <Route exact path="/literature/:key" render={props => <LiteratureReader {...props} />} />
         </Switch>
@@ -55,7 +55,6 @@ function Content() {
 
 const useStyles = makeStyles((theme) => ({
     content: {
-        height: "100%",
         width: "100%",
         position: "absolute",
         right: 0,

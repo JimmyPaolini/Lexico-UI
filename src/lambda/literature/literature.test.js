@@ -1,6 +1,6 @@
 process.env.AWS_REGION = "us-east-1";
 process.env.ENV = "dev";
-const {literature} = require("./literature");
+const { literature } = require("./literature");
 
 async function main() {
     const event = {
